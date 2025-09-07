@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الخدمات - معرضات و نادل مطعم</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* الأساسيات */
+    :root {
+      --primary-color: #20445a;
+      --secondary-color: #3a7ca5;
+      --accent-color: #f8a31b;
+      --light-color: #f5f5f5;
+      --dark-color: #333;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: #fff;
+      padding-top: 80px; /* تعويض للـ navbar الثابت */
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    /* New Full-width Navbar Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 5000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      height: 80px; /* ارتفاع الـ Navbar */
+      display: flex;
+      align-items: center;
+    }
+    
+    .site-header.scrolled {
+      background-color: rgba(32, 68, 90, 0.95);
+      backdrop-filter: blur(10px);
+      height: 70px; /* يصغر عند التمرير */
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-left: 10px;
+      transition: var(--transition);
+    }
+    
+    .logo span {
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+    }
+              .language-switcher {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .language-switcher:hover {
+      color: var(--accent-color);
+    }
+    
+    .language-switcher i {
+      margin-left: 5px;
+    }
+    /* Full-width Navigation */
+    .full-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      transform: translateY(-100%);
+    }
+    
+    .full-nav.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .nav-links {
+      list-style: none;
+      text-align: center;
+    }
+    
+    .nav-links li {
+      margin: 25px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-links li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .full-nav.active .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .full-nav.active .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+    .full-nav.active .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+    .full-nav.active .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+    .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-block;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateX(-10px);
+    }
+    
+    .nav-links a.active {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      background: none;
+      border: none;
+    }
+    
+    .menu-toggle span {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(10px);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+      background: var(--accent-color);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+      background: var(--accent-color);
+    }
+    
+    /* Social Icons in Nav */
+    .nav-social {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-social {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+    
+    .nav-social a {
+      color: #fff;
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .nav-social a:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+    }
+
+    /* قسم البطل */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 100px 0 80px;
+    }
+    
+    .page-hero h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    
+    .page-hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+      padding-top: 8px;
+    }
+    
+    /* قسم الخدمات */
+    .services-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+    
+    .services-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .services-header h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .services-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+    
+    .service-card h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .service-card p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .service-price {
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    .service-features {
+      text-align: right;
+      margin-top: 20px;
+    }
+    
+    .service-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-right: 25px;
+    }
+    
+    .service-features li:before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      font-size: 1.5rem;
+    }
+    
+    /* قسم طلب الخدمة */
+    .service-request {
+      background: white;
+      padding: 60px 0;
+    }
+    
+    .request-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .request-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .request-header h2 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .request-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .btn-accent {
+      background: var(--accent-color);
+    }
+    
+    .btn-accent:hover {
+      background: #e5940e;
+    }
+    
+    .price-estimate {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      border-left: 4px solid var(--accent-color);
+      display: none;
+    }
+    
+    .price-estimate h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .estimated-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+    
+    /* الفوتر */
+ /* الفوتر */
+    .site-footer {
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 60px;
+    }
+    
+    .footer-top {
+      padding: 50px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-col h4 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: #333;
+    }
+    
+    .contact-info li {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info li i {
+      margin-left: 10px;
+      color: var(--accent-color);
+    }
+    
+    .footer-bottom {
+      background: #1a384b;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
+      }
+      
+      .site-header {
+        height: 70px;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .page-hero p {
+        font-size: 1rem;
+      }
+      
+      .request-container {
+        padding: 20px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiB2aWV3Qb3g9IjAgMCAxMDAgNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDEwSDQwdjIwSDIwVjEwek00NSAxMEg3MHYyMEg0NVYxMHoiIGZpbGw9IiNmZmMxMDciLz48L3N2Zz4=" alt="Logo" />
+          <span>A L ’ A E A L I COMPANY</span>
+        </a>
+        
+      <div style="display: flex; align-items: center; gap: 10px;">
+ 
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+   <a href="service_en.html" class="language-switcher" style="font-size: 18px;">
+    <i class="fas fa-globe"></i> EN
+  </a>
+</div>
+      </div>
+    </div>
+    
+    <!-- Full-width Navigation -->
+    <nav class="full-nav" id="fullNav">
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="services.html" class="active">الخدمات</a></li>
+        <li><a href="portfolio.html">شركاتنا</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+      
+    
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>خدماتنا</h1>
+      <p>نحن شركة متخصصة في أعمال الصيانة والتشغيل، نقدم حلول شاملة لضمان كفاءة واستمرارية عمل المنشآت. نحرص على تقديم خدماتنا بأعلى معايير الجودة والسلامة من خلال فريق فني مؤهل وخبرة طويلة في هذا المجال</p>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="services-header">
+        <h2>خدماتنا</h2>
+        <p>نقدم مجموعة متكاملة من الخدمات لتلبية جميع احتياجاتكم</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- مطعم -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>مطعم</h3>
+          <div class="service-price">تبدأ الأسعار من 500 ريال</div>
+          <p>تقديم وجبات متنوعة بجودة عالية.</p>
+          <ul class="service-features">
+            <li>خدمة طاولة كاملة</li>
+            <li>تجهيز حفلات خاصة</li>
+            <li>توصيل طلبات للمنازل</li>
+            <li>أطعمة متنوعة حسب الطلب</li>
+          </ul>
+          <p style="height: 7px;""></p>
+          <button class="btn btn-accent request-service-btn" data-service="مطعم">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- ممرضات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-user-nurse"></i>
+          </div>
+          <h3>ممرضات</h3>
+          <div class="service-price">تبدأ الأسعار من 300 ريال</div>
+          <p>خدمات تمريضية ورعاية صحية منزلية.</p>
+          <ul class="service-features">
+            <li>رعاية مسنين</li>
+            <li>رعاية مرضى مزمنين</li>
+            <li>خدمات تمريض منزلية</li>
+            <li>رعاية ما بعد العمليات</li>
+          </ul>
+         <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="ممرضات">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- عمالة منزلية -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>عمالة منزلية</h3>
+          <div class="service-price">تبدأ الأسعار من 200 ريال</div>
+          <p>توفير كوادر مؤهلة للأعمال المنزلية.</p>
+          <ul class="service-features">
+            <li>خدمات تنظيف</li>
+            <li>طبخ وإعداد وجبات</li>
+            <li>رعاية أطفال</li>
+            <li>غسيل وكي الملابس</li>
+          </ul>
+                   <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="عمالة منزلية">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- تشغيل معامل -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>تشغيل معامل</h3>
+          <div class="service-price">تبدأ الأسعار من 1000 ريال</div>
+          <p>تشغيل وصيانة المعامل بأحدث التقنيات.</p>
+          <ul class="service-features">
+            <li>تشغيل معامل طبية</li>
+            <li>معامل أبحاث علمية</li>
+            <li>صيانة دورية للمعدات</li>
+            <li>تدريب الكوادر</li>
+          </ul>
+          <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="تشغيل معامل">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- مشاريع ترميم -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>مشاريع ترميم</h3>
+          <div class="service-price">تبدأ الأسعار من 2000 ريال</div>
+          <p>ترميم المباني الخاصة والحكومية باحترافية.</p>
+          <ul class="service-features">
+            <li>ترميم واجهات المباني</li>
+            <li>ترميم داخلي شامل</li>
+            <li>ترميم تراثي وأثري</li>
+            <li>ترميم منشآت حكومية</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="مشاريع ترميم">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- عقود إنشاءات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h3>عقود إنشاءات</h3>
+          <div class="service-price">تبدأ الأسعار من 5000 ريال</div>
+          <p>تنفيذ مشاريع الإنشاءات بجودة عالية.</p>
+          <ul class="service-features">
+            <li>إنشاء مباني سكنية</li>
+            <li>إنشاء منشآت تجارية</li>
+            <li>تشييد مشاريع حكومية</li>
+            <li>إشراف على التنفيذ</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="عقود إنشاءات">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- أعمال صيانة -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>أعمال صيانة</h3>
+          <div class="service-price">تبدأ الأسعار من 150 ريال</div>
+          <p>خدمات صيانة شاملة وسريعة.</p>
+          <ul class="service-features">
+            <li>صيانة كهربائية</li>
+            <li>صيانة سباكة</li>
+            <li>صيانة تكييف وتبريد</li>
+            <li>صيانة أجهزة منزلية</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="أعمال صيانة">اطلب هذه الخدمة</button>
+        </div>
+
+        <!-- دهانات وتشطيبات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-paint-roller"></i>
+          </div>
+          <h3>دهانات وتشطيبات</h3>
+          <div class="service-price">تبدأ الأسعار من 800 ريال</div>
+          <p>أعمال تشطيبات وديكور بجودة عالية.</p>
+          <ul class="service-features">
+            <li>دهانات داخلية وخارجية</li>
+            <li>تشطيبات جبسية</li>
+            <li>أرضيات وسерاميك</li>
+            <li>ديكورات حديثة</li>
+          </ul>
+        <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="دهانات وتشطيبات">اطلب هذه الخدمة</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- قسم طلب الخدمة -->
+  <section class="service-request" id="requestService">
+    <div class="container">
+      <div class="request-container">
+        <div class="request-header">
+          <h2>طلب خدمة</h2>
+          <p>املأ النموذج أدناه لطلب الخدمة وسنقوم بالتواصل معك لتأكيد التفاصيل والسعر</p>
+        </div>
+        
+        <form class="request-form" id="serviceRequestForm">
+          <div class="form-group">
+            <label for="serviceType">نوع الخدمة</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="">اختر الخدمة المطلوبة</option>
+              <option value="مطعم">مطعم</option>
+              <option value="ممرضات">ممرضات</option>
+              <option value="عمالة منزلية">عمالة منزلية</option>
+              <option value="تشغيل معامل">تشغيل معامل</option>
+              <option value="مشاريع ترميم">مشاريع ترميم</option>
+              <option value="عقود إنشاءات">عقود إنشاءات</option>
+              <option value="أعمال صيانة">أعمال صيانة</option>
+              <option value="دهانات وتشطيبات">دهانات وتشطيبات</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">الاسم الكامل</label>
+            <input type="text" id="name" name="name" required placeholder="ادخل اسمك الكامل">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">رقم الهاتف</label>
+            <input type="tel" id="phone" name="phone" required placeholder="ادخل رقم هاتفك">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني (اختياري)</label>
+            <input type="email" id="email" name="email" placeholder="ادخل بريدك الإلكتروني">
+          </div>
+          
+          <div class="form-group">
+            <label for="details">تفاصيل الطلب</label>
+            <textarea id="details" name="details" required placeholder="اكتب تفاصيل الخدمة المطلوبة هنا..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">الميزانية المتوقعة (اختياري)</label>
+            <input type="number" id="budget" name="budget" placeholder="المبلغ بالريال السعودي">
+          </div>
+          
+          <div class="form-group">
+            <label for="date">الموعد المطلوب للخدمة (اختياري)</label>
+            <input type="date" id="date" name="date">
+          </div>
+          
+          <button type="submit" class="btn btn-accent">إرسال الطلب</button>
+        </form>
+        
+        <div class="price-estimate" id="priceEstimate">
+          <h4>التقدير المبدئي للسعر</h4>
+          <div class="estimated-price" id="estimatedPrice">0 ريال</div>
+          <p>هذا السعر تقديري وقد يختلف حسب تفاصيل الخدمة المطلوبة</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <div class="footer-col about">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-building" style="font-size: 32px; margin-left: 10px;"></i>
+            <span style="color: var(--accent-color); font-weight: bold;">شركة الأعالي</span>
+          </a>
+            <p style="height: 5px;"></p>
+          <p>
+            نقدم لكم أفضل خدماتنا بأعلى معايير الجودة والتميز في مختلف المجالات.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="portfolio.html">شركاتنا</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>خدماتنا</h4>
+          <ul>
+            <li><a href="#">عمالة منزلية</a></li>
+            <li><a href="#">تشغيل معامل ومشاريع</a></li>
+            <li><a href="#">ترميم أبنية خاصة وحكومية</a></li>
+            <li><a href="#">أعمال صيانة المباني</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> الرياض، السعودية</li>
+            <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
+            <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year">2023</span> شركة الأفْراس. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+     
+
+  <script>
+    // سنة الفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Full-width Navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const fullNav = document.getElementById('fullNav');
+    const body = document.body;
+    
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      fullNav.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    });
+    
+    // إغلاق القائمة عند النقر على رابط
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        fullNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    });
+    
+    // تأثير التمرير على الـ Header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // أزرار طلب الخدمة
+    const requestButtons = document.querySelectorAll('.request-service-btn');
+    const serviceTypeSelect = document.getElementById('serviceType');
+    const requestSection = document.getElementById('requestService');
+    const priceEstimate = document.getElementById('priceEstimate');
+    const estimatedPrice = document.getElementById('estimatedPrice');
+    
+    requestButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const service = button.getAttribute('data-service');
+        serviceTypeSelect.value = service;
+        
+        // التمرير إلى قسم طلب الخدمة
+        requestSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // حساب سعر تقديري
+        calculateEstimatedPrice(service);
+      });
+    });
+    
+    // تغيير السعر عند تغيير نوع الخدمة
+    serviceTypeSelect.addEventListener('change', function() {
+      calculateEstimatedPrice(this.value);
+    });
+    
+    // دالة لحساب السعر التقديري
+    function calculateEstimatedPrice(service) {
+      let price = 0;
+      
+      switch(service) {
+        case 'مطعم':
+          price = 500;
+          break;
+        case 'ممرضات':
+          price = 300;
+          break;
+        case 'عمالة منزلية':
+          price = 200;
+          break;
+        case 'تشغيل معامل':
+          price = 1000;
+          break;
+        case 'مشاريع ترميم':
+          price = 2000;
+          break;
+        case 'عقود إنشاءات':
+          price = 5000;
+          break;
+        case 'أعمال صيانة':
+          price = 150;
+          break;
+        case 'دهانات وتشطيبات':
+          price = 800;
+          break;
+        default:
+          price = 0;
+      }
+      
+      if (price > 0) {
+        estimatedPrice.textContent = price + ' ريال';
+        priceEstimate.style.display = 'block';
+      } else {
+        priceEstimate.style.display = 'none';
+      }
+    }
+    
+    // إرسال النموذج
+    document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة لتأكيد التفاصيل والسعر النهائي.');
+      this.reset();
+      priceEstimate.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

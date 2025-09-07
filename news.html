@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>رؤيتنا - شركة XYZ</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    :root {
+      --primary-color: #20445a;
+      --secondary-color: #2c5877;
+      --accent-color: #ffc107;
+      --text-color: #fff;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      color: #333;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      padding-top: 80px; /* تعويض للـ navbar الثابت */
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* New Full-width Navbar Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 5000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      height: 80px; /* ارتفاع الـ Navbar */
+      display: flex;
+      align-items: center;
+    }
+    
+    .site-header.scrolled {
+      background-color: rgba(32, 68, 90, 0.95);
+      backdrop-filter: blur(10px);
+      height: 70px; /* يصغر عند التمرير */
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-left: 10px;
+      transition: var(--transition);
+    }
+    
+    .logo span {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+              .language-switcher {
+      color: var(--text-color);
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .language-switcher:hover {
+      color: var(--accent-color);
+    }
+    
+    .language-switcher i {
+      margin-left: 5px;
+    }
+    /* Full-width Navigation */
+    .full-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      transform: translateY(-100%);
+    }
+    
+    .full-nav.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .nav-links {
+      list-style: none;
+      text-align: center;
+    }
+    
+    .nav-links li {
+      margin: 25px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-links li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .full-nav.active .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .full-nav.active .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+    .full-nav.active .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+    .full-nav.active .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+    .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+    .full-nav.active .nav-links li:nth-child(6) { transition-delay: 0.6s; }
+    .full-nav.active .nav-links li:nth-child(7) { transition-delay: 0.7s; }
+    
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 28px;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-block;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateX(-10px);
+    }
+    
+    .nav-links a.active {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      background: none;
+      border: none;
+    }
+    
+    .menu-toggle span {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: var(--text-color);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(10px);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+      background: var(--accent-color);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+      background: var(--accent-color);
+    }
+    
+    /* Social Icons in Nav */
+    .nav-social {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-social {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.8s;
+    }
+    
+    .nav-social a {
+      color: var(--text-color);
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .nav-social a:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+    }
+    
+    /* Hero Section */
+    .page-hero {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 60vh;
+      text-align: center;
+      color: white;
+      overflow: hidden;
+    }
+    
+    /* خلفية متدرجة متحركة */
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    .animate-gradient {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      background-size: 200% 200%;
+      animation: gradient 8s ease infinite;
+      opacity: 0.9;
+    }
+    
+    .page-hero .container {
+      position: relative;
+      z-index: 10;
+    }
+    
+    .page-hero h1 {
+      font-size: 3rem;
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    
+    .page-hero p {
+      font-size: 1.25rem;
+    }
+    
+    /* Vision Content */
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .bg-gray-50 {
+      background-color: #f9fafb;
+    }
+    
+    .vision-content {
+      max-width: 56rem;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1.125rem;
+      line-height: 2.25rem;
+      color: #374151;
+      padding: 2rem;
+      background-color: white;
+      border-radius: 1rem;
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .vision-content p {
+      margin-bottom: 2rem;
+    }
+    
+    .absolute {
+      position: absolute;
+    }
+    
+    .-top-8 {
+      top: -2rem;
+    }
+    
+    .-right-8 {
+      right: -2rem;
+    }
+    
+    .w-32 {
+      width: 8rem;
+    }
+    
+    .h-32 {
+      height: 8rem;
+    }
+    
+    .bg-indigo-100 {
+      background-color: #e0e7ff;
+    }
+    
+    .rounded-full {
+      border-radius: 9999px;
+    }
+    
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .5; }
+    }
+    
+    /* الفوتر */
+    .site-footer {
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 60px;
+    }
+    
+    .footer-top {
+      padding: 50px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-col h4 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: #333;
+    }
+    
+    .contact-info li {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info li i {
+      margin-left: 10px;
+      color: var(--accent-color);
+    }
+    
+    .footer-bottom {
+      background: #1a384b;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
+      }
+      
+      .site-header {
+        height: 70px;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .page-hero h1 {
+        font-size: 2.5rem;
+      }
+      
+      .page-hero p {
+        font-size: 1.1rem;
+      }
+      
+      .vision-content {
+        padding: 1.5rem;
+        font-size: 1rem;
+        line-height: 1.8;
+      }
+    }
+    
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+    
+    .space-y-8 > * + * {
+      margin-top: 2rem;
+    }
+    
+    .py-16 {
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+    
+    .max-w-4xl {
+      max-width: 56rem;
+    }
+    
+    .mx-auto {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .text-lg {
+      font-size: 1.125rem;
+    }
+    
+    .leading-9 {
+      line-height: 2.25rem;
+    }
+    
+    .text-gray-700 {
+      color: #374151;
+    }
+    
+    .p-8 {
+      padding: 2rem;
+    }
+    
+    .bg-white {
+      background-color: white;
+    }
+    
+    .rounded-2xl {
+      border-radius: 1rem;
+    }
+    
+    .shadow-xl {
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    }
+    
+    .relative {
+      position: relative;
+    }
+    
+    .overflow-hidden {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo.svg" alt="Logo"/>
+          <span>A L ’ A E A L I COMPANY</span>
+        </a>
+        
+         <div style="display: flex; align-items: center; gap: 10px;">
+ 
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+   <a href="news_en.html" class="language-switcher" style="font-size: 18px;">
+    <i class="fas fa-globe"></i> EN
+  </a>
+</div>
+      </div>
+    </div>
+    
+    <!-- Full-width Navigation -->
+    <nav class="full-nav" id="fullNav">
+      <ul class="nav-links">
+        <li><a href="index.html">الرئيسية</a></li>
+        <li><a href="about.html">من نحن</a></li>
+        <li><a href="services.html">الخدمات</a></li>
+        <li><a href="portfolio.html">شركاتنا</a></li>
+        <li><a href="news.html">الأخبار</a></li>
+        <li><a href="vision.html" class="active">رؤيتنا</a></li>
+        <li><a href="contact.html">تواصل معنا</a></li>
+      </ul>
+      
+      <div class="nav-social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="page-hero" data-aos="fade-up">
+    <!-- خلفية متحركة -->
+    <div class="animate-gradient"></div>
+    
+    <!-- محتوى الهيرو -->
+    <div class="container">
+      <h1 class="animate__animated animate__fadeInDown">رؤيتنا</h1>
+      <p class="animate__animated animate__fadeInUp animate__delay-1s">انطلاقتنا نحو المستقبل تبدأ من مصادر القوة والتميز.</p>
+    </div>
+  </section>
+
+  <!-- Vision Content -->
+  <section class="section py-16 bg-gray-50" data-aos="fade-up">
+    <div class="container">
+      <article class="vision-content">
+        <!-- أيقونة ديكورية -->
+        <div class="absolute -top-8 -right-8 w-32 h-32 bg-indigo-100 rounded-full animate-pulse"></div>
+        
+        <p data-aos="fade-right" data-aos-delay="200">
+          🚀 الإنطالق من مصادر القوة الحالية للمملكة، مثل: دعم الشركات الناجحة، واستثمار الموارد البشرية السعودية.
+        </p>
+        <p data-aos="fade-left" data-aos-delay="400">
+          ⚖️ التركيز على الأنظمة والتشريعات لتحفيز النمو بوتيرة أسرع، والتركيز على أهدافنا وأهداف شركائنا التي تطابقت من حيث الرؤية.
+        </p>
+        <p data-aos="fade-up" data-aos-delay="600">
+          🎯 التركيز على تنوع الخبرات والخلفيات العلمية في فريقنا للحصول على بيئة تنافسية ينتج عنها عمل إبداعي متميز.
+        </p>
+      </article>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  
+
+     
+
+     <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <div class="footer-col about">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-building" style="font-size: 32px; margin-left: 10px;"></i>
+            <span style="color: var(--accent-color); font-weight: bold;">شركة الأعالي</span>
+          </a>
+             <p style="height: 5px;"></p>
+          <p>
+            نقدم لكم أفضل خدماتنا بأعلى معايير الجودة والتميز في مختلف المجالات.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>روابط سريعة</h4>
+          <ul>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="portfolio.html">شركاتنا</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>خدماتنا</h4>
+          <ul>
+            <li><a href="#">عمالة منزلية</a></li>
+            <li><a href="#">تشغيل معامل ومشاريع</a></li>
+            <li><a href="#">ترميم أبنية خاصة وحكومية</a></li>
+            <li><a href="#">أعمال صيانة المباني</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> الرياض، السعودية</li>
+            <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
+            <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year">2023</span> شركة الأفْراس. جميع الحقوق محفوظة.</p>
+      </div>
+    </div>
+  </footer>
+     
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    // تهيئة AOS
+    AOS.init({
+      duration: 1200,
+      once: true,
+    });
+    
+    // Full-width Navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const fullNav = document.getElementById('fullNav');
+    const body = document.body;
+    
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      fullNav.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    });
+    
+    // إغلاق القائمة عند النقر على رابط
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        fullNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    });
+    
+    // تأثير التمرير على الـ Header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // إضافة السنة الحالية للفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

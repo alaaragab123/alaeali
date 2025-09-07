@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services - Restaurant Displays & Waiters</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    /* الأساسيات */
+    :root {
+      --primary-color: #20445a;
+      --secondary-color: #3a7ca5;
+      --accent-color: #f8a31b;
+      --light-color: #f5f5f5;
+      --dark-color: #333;
+      --transition: all 0.3s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      line-height: 1.6;
+      color: var(--dark-color);
+      background-color: #fff;
+      padding-top: 80px; /* تعويض للـ navbar الثابت */
+    }
+    
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
+    }
+    
+    /* New Full-width Navbar Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 5000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      height: 80px; /* ارتفاع الـ Navbar */
+      display: flex;
+      align-items: center;
+    }
+    
+    .site-header.scrolled {
+      background-color: rgba(32, 68, 90, 0.95);
+      backdrop-filter: blur(10px);
+      height: 70px; /* يصغر عند التمرير */
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+      transition: var(--transition);
+    }
+    
+    .logo span {
+      font-weight: 600;
+      font-size: 16px;
+      color: #fff;
+    }
+        .language-switcher {
+      color: #fff;
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .language-switcher:hover {
+      color: var(--accent-color);
+    }
+    
+    .language-switcher i {
+      margin-right: 5px;
+    }
+    /* Full-width Navigation */
+    .full-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      transform: translateY(-100%);
+    }
+    
+    .full-nav.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .nav-links {
+      list-style: none;
+      text-align: center;
+    }
+    
+    .nav-links li {
+      margin: 25px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-links li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .full-nav.active .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .full-nav.active .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+    .full-nav.active .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+    .full-nav.active .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+    .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-block;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateX(10px);
+    }
+    
+    .nav-links a.active {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      background: none;
+      border: none;
+    }
+    
+    .menu-toggle span {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: #fff;
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(10px);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+      background: var(--accent-color);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+      background: var(--accent-color);
+    }
+    
+    /* Social Icons in Nav */
+    .nav-social {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-social {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+    
+    .nav-social a {
+      color: #fff;
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .nav-social a:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+    }
+
+    /* قسم البطل */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 100px 0 80px;
+    }
+    
+    .page-hero h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+    }
+    
+    .page-hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+      padding-top: 8px;
+    }
+    
+    /* قسم الخدمات */
+    .services-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+    
+    .services-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .services-header h2 {
+      font-size: 2rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .services-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+    
+    .service-card h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .service-card p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .service-price {
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    .service-features {
+      text-align: left;
+      margin-top: 20px;
+    }
+    
+    .service-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-left: 25px;
+    }
+    
+    .service-features li:before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      font-size: 1.5rem;
+    }
+    
+    /* قسم طلب الخدمة */
+    .service-request {
+      background: white;
+      padding: 60px 0;
+    }
+    
+    .request-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .request-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .request-header h2 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .request-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .btn-accent {
+      background: var(--accent-color);
+    }
+    
+    .btn-accent:hover {
+      background: #e5940e;
+    }
+    
+    .price-estimate {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      border-left: 4px solid var(--accent-color);
+      display: none;
+    }
+    
+    .price-estimate h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .estimated-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+    
+    /* الفوتر */
+    .site-footer {
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 60px;
+    }
+    
+    .footer-top {
+      padding: 50px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-col h4 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: #333;
+    }
+    
+    .contact-info li {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info li i {
+      margin-right: 10px;
+      color: var(--accent-color);
+    }
+    
+    .footer-bottom {
+      background: #1a384b;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
+      }
+      
+      .site-header {
+        height: 70px;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .page-hero p {
+        font-size: 1rem;
+      }
+      
+      .request-container {
+        padding: 20px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjQwIiB2aWV3Qb3g9IjAgMCAxMDAgNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTIwIDEwSDQwdjIwSDIwVjEwek00NSAxMEg3MHYyMEg0NVYxMHoiIGZpbGw9IiNmZmMxMDciLz48L3N2Zz4=" alt="Logo" />
+          <span>A L ’ A E A L I COMPANY</span>
+        </a>
+        
+              
+      <div style="display: flex; align-items: center; gap: 10px;">
+ 
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+   <a href="services.html" class="language-switcher" style="font-size: 18px;">
+    <i class="fas fa-globe"></i> AR
+  </a>
+</div>
+      </div>
+    </div>
+    
+    <!-- Full-width Navigation -->
+    <nav class="full-nav" id="fullNav">
+      <ul class="nav-links">
+        <li><a href="home_en.html">Home</a></li>
+        <li><a href="about_en.html">About Us</a></li>
+        <li><a href="service_en.html" class="active">Services</a></li>
+        <li><a href="portfolio_en.html">Our Companies</a></li>
+        <li><a href="contact_en.html">Contact Us</a></li>
+      </ul>
+      
+    
+    </nav>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <h1>Our Services</h1>
+      <p>We are a company specialized in maintenance and operation works, providing comprehensive solutions to ensure the efficiency and continuity of facilities. We are committed to providing our services with the highest standards of quality and safety through a qualified technical team and long experience in this field.</p>
+    </div>
+  </section>
+
+  <section class="services-section">
+    <div class="container">
+      <div class="services-header">
+        <h2>Our Services</h2>
+        <p>We provide a comprehensive range of services to meet all your needs</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- Restaurant -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>Restaurant</h3>
+          <div class="service-price">Prices starting from 500 SAR</div>
+          <p>Serving diverse meals with high quality.</p>
+          <ul class="service-features">
+            <li>Full table service</li>
+            <li>Private party preparation</li>
+            <li>Home delivery</li>
+            <li>Varied foods on request</li>
+          </ul>
+          <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Restaurant">Request this service</button>
+        </div>
+
+        <!-- Nurses -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-user-nurse"></i>
+          </div>
+          <h3>Nurses</h3>
+          <div class="service-price">Prices starting from 300 SAR</div>
+          <p>Nursing and home healthcare services.</p>
+          <ul class="service-features">
+            <li>Elderly care</li>
+            <li>Chronic patient care</li>
+            <li>Home nursing services</li>
+            <li>Post-operative care</li>
+          </ul>
+         <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Nurses">Request this service</button>
+        </div>
+
+        <!-- Domestic workers -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>Domestic Workers</h3>
+          <div class="service-price">Prices starting from 200 SAR</div>
+          <p>Providing qualified personnel for household work.</p>
+          <ul class="service-features">
+            <li>Cleaning services</li>
+            <li>Cooking and meal preparation</li>
+            <li>Child care</li>
+            <li>Laundry and ironing</li>
+          </ul>
+                   <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Domestic Workers">Request this service</button>
+        </div>
+
+        <!-- Laboratory operation -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>Laboratory Operation</h3>
+          <div class="service-price">Prices starting from 1000 SAR</div>
+          <p>Operation and maintenance of laboratories with the latest technologies.</p>
+          <ul class="service-features">
+            <li>Medical laboratory operation</li>
+            <li>Scientific research laboratories</li>
+            <li>Periodic equipment maintenance</li>
+            <li>Personnel training</li>
+          </ul>
+          <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Laboratory Operation">Request this service</button>
+        </div>
+
+        <!-- Restoration projects -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>Restoration Projects</h3>
+          <div class="service-price">Prices starting from 2000 SAR</div>
+          <p>Professional restoration of private and government buildings.</p>
+          <ul class="service-features">
+            <li>Building facade restoration</li>
+            <li>Comprehensive internal restoration</li>
+            <li>Heritage and archaeological restoration</li>
+            <li>Government facilities restoration</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Restoration Projects">Request this service</button>
+        </div>
+
+        <!-- Construction contracts -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h3>Construction Contracts</h3>
+          <div class="service-price">Prices starting from 5000 SAR</div>
+          <p>Implementation of construction projects with high quality.</p>
+          <ul class="service-features">
+            <li>Residential building construction</li>
+            <li>Commercial facilities construction</li>
+            <li>Government projects construction</li>
+            <li>Execution supervision</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Construction Contracts">Request this service</button>
+        </div>
+
+        <!-- Maintenance works -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>Maintenance Works</h3>
+          <div class="service-price">Prices starting from 150 SAR</div>
+          <p>Comprehensive and fast maintenance services.</p>
+          <ul class="service-features">
+            <li>Electrical maintenance</li>
+            <li>Plumbing maintenance</li>
+            <li>AC and refrigeration maintenance</li>
+            <li>Home appliance maintenance</li>
+          </ul>
+           <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Maintenance Works">Request this service</button>
+        </div>
+
+        <!-- Painting and finishing -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-paint-roller"></i>
+          </div>
+          <h3>Painting and Finishing</h3>
+          <div class="service-price">Prices starting from 800 SAR</div>
+          <p>Finishing and decoration works with high quality.</p>
+          <ul class="service-features">
+            <li>Interior and exterior painting</li>
+            <li>Gypsum finishing</li>
+            <li>Flooring and ceramics</li>
+            <li>Modern decorations</li>
+          </ul>
+        <p style="height: 7px;"></p>
+          <button class="btn btn-accent request-service-btn" data-service="Painting and Finishing">Request this service</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Service request section -->
+  <section class="service-request" id="requestService">
+    <div class="container">
+      <div class="request-container">
+        <div class="request-header">
+          <h2>Request Service</h2>
+          <p>Fill out the form below to request the service and we will contact you to confirm details and price</p>
+        </div>
+        
+        <form class="request-form" id="serviceRequestForm">
+          <div class="form-group">
+            <label for="serviceType">Service Type</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="">Select the required service</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Nurses">Nurses</option>
+              <option value="Domestic Workers">Domestic Workers</option>
+              <option value="Laboratory Operation">Laboratory Operation</option>
+              <option value="Restoration Projects">Restoration Projects</option>
+              <option value="Construction Contracts">Construction Contracts</option>
+              <option value="Maintenance Works">Maintenance Works</option>
+              <option value="Painting and Finishing">Painting and Finishing</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email (Optional)</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="details">Request Details</label>
+            <textarea id="details" name="details" required placeholder="Write the details of the required service here..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">Expected Budget (Optional)</label>
+            <input type="number" id="budget" name="budget" placeholder="Amount in Saudi Riyal">
+          </div>
+          
+          <div class="form-group">
+            <label for="date">Required Service Date (Optional)</label>
+            <input type="date" id="date" name="date">
+          </div>
+          
+          <button type="submit" class="btn btn-accent">Submit Request</button>
+        </form>
+        
+        <div class="price-estimate" id="priceEstimate">
+          <h4>Initial Price Estimate</h4>
+          <div class="estimated-price" id="estimatedPrice">0 SAR</div>
+          <p>This price is an estimate and may vary according to the details of the required service</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+   <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <div class="footer-col about">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-building" style="font-size: 32px; margin-right: 10px;"></i>
+            <span style="color: var(--accent-color); font-weight: bold;">Al A'eali Company</span>
+          </a>
+            <p style="height: 5px;"></p>
+          <p>
+            We provide you with our best services with the highest standards of quality and excellence in various fields.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about_en.html">About Us</a></li>
+            <li><a href="service_en.html">Services</a></li>
+            <li><a href="portfolio_en.html">Our Companies</a></li>
+            <li><a href="contact_en.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Domestic Workers</a></li>
+            <li><a href="#">Laboratory and Project Operation</a></li>
+            <li><a href="#">Private and Government Building Restoration</a></li>
+            <li><a href="#">Building Maintenance Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
+            <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
+            <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year">2023</span> Al Afras Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+     
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // Full-width Navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const fullNav = document.getElementById('fullNav');
+    const body = document.body;
+    
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      fullNav.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        fullNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    });
+    
+    // Scroll effect on Header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Service request buttons
+    const requestButtons = document.querySelectorAll('.request-service-btn');
+    const serviceTypeSelect = document.getElementById('serviceType');
+    const requestSection = document.getElementById('requestService');
+    const priceEstimate = document.getElementById('priceEstimate');
+    const estimatedPrice = document.getElementById('estimatedPrice');
+    
+    requestButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const service = button.getAttribute('data-service');
+        serviceTypeSelect.value = service;
+        
+        // Scroll to service request section
+        requestSection.scrollIntoView({ behavior: 'smooth' });
+        
+        // Calculate estimated price
+        calculateEstimatedPrice(service);
+      });
+    });
+    
+    // Change price when service type changes
+    serviceTypeSelect.addEventListener('change', function() {
+      calculateEstimatedPrice(this.value);
+    });
+    
+    // Function to calculate estimated price
+    function calculateEstimatedPrice(service) {
+      let price = 0;
+      
+      switch(service) {
+        case 'Restaurant':
+          price = 500;
+          break;
+        case 'Nurses':
+          price = 300;
+          break;
+        case 'Domestic Workers':
+          price = 200;
+          break;
+        case 'Laboratory Operation':
+          price = 1000;
+          break;
+        case 'Restoration Projects':
+          price = 2000;
+          break;
+        case 'Construction Contracts':
+          price = 5000;
+          break;
+        case 'Maintenance Works':
+          price = 150;
+          break;
+        case 'Painting and Finishing':
+          price = 800;
+          break;
+        default:
+          price = 0;
+      }
+      
+      if (price > 0) {
+        estimatedPrice.textContent = price + ' SAR';
+        priceEstimate.style.display = 'block';
+      } else {
+        priceEstimate.style.display = 'none';
+      }
+    }
+    
+    // Form submission
+    document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you! Your request has been received and we will contact you within 24 hours to confirm details and final price.');
+      this.reset();
+      priceEstimate.style.display = 'none';
+    });
+  </script>
+</body>
+</html>

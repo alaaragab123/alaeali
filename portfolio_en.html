@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Our Companies - XYZ Company</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary-color: #20445a;
+      --secondary-color: #2c5877;
+      --accent-color: #ffc107;
+      --text-color: #fff;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      color: #333;
+      line-height: 1.6;
+      background-color: #f9f9f9;
+      padding-top: 80px; /* Compensation for fixed navbar */
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    /* New Full-width Navbar Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 5000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      height: 80px; /* Navbar height */
+      display: flex;
+      align-items: center;
+    }
+    
+    .site-header.scrolled {
+      background-color: rgba(32, 68, 90, 0.95);
+      backdrop-filter: blur(10px);
+      height: 70px; /* Shrinks when scrolling */
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+      width: 100%;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px; /* Changed from margin-left */
+      transition: var(--transition);
+    }
+    
+    .logo span {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+        .language-switcher {
+      color: var(--text-color);
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .language-switcher:hover {
+      color: var(--accent-color);
+    }
+    
+    .language-switcher i {
+      margin-right: 5px;
+    }
+    /* Full-width Navigation */
+    .full-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      transform: translateY(-100%);
+    }
+    
+    .full-nav.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .nav-links {
+      list-style: none;
+      text-align: center;
+    }
+    
+    .nav-links li {
+      margin: 25px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-links li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .full-nav.active .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .full-nav.active .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+    .full-nav.active .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+    .full-nav.active .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+    .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-block;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* Changed from right: 0 */
+      width: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateX(10px); /* Changed from -10px */
+    }
+    
+    .nav-links a.active {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: relative;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      background: none;
+      border: none;
+    }
+    
+    .menu-toggle span {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: var(--text-color);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(10px);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+      background: var(--accent-color);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+      background: var(--accent-color);
+    }
+    
+    /* Social Icons in Nav */
+    .nav-social {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-social {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+    
+    .nav-social a {
+      color: var(--text-color);
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .nav-social a:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+    }
+    
+    /* Hero Section */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+    
+    .page-hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    
+    .page-hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+      padding-top: 8px;
+    }
+    
+    /* Our Companies Section */
+    .clients-section {
+      padding: 60px 0;
+      background: #f9f9f9;
+    }
+    
+    .clients-section h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: var(--primary-color);
+      font-size: 32px;
+    }
+    
+    .clients-section p {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #444;
+      line-height: 1.8;
+      font-size: 15px;
+    }
+    
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      align-items: center;
+      justify-items: center;
+    }
+    
+    .clients-grid img {
+      max-width: 120px;
+      filter: grayscale(100%);
+      transition: all 0.3s;
+    }
+    
+    .clients-grid img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.05);
+    }
+    
+    /* Footer */
+    .site-footer {
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 60px;
+    }
+    
+    .footer-top {
+      padding: 50px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-col h4 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* Changed from right: 0 */
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: #333;
+    }
+    
+    .contact-info li {
+      color: #ccc;
+      margin-bottom: 15px;
+    }
+    
+    .contact-info li i {
+      margin-right: 10px; /* Changed from margin-left */
+      color: var(--accent-color);
+    }
+    
+    .footer-bottom {
+      background: #1a384b;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* Reduced padding for small screens */
+      }
+      
+      .site-header {
+        height: 70px;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .page-hero h1 {
+        font-size: 32px;
+      }
+      
+      .page-hero p {
+        font-size: 16px;
+      }
+      
+      .clients-grid {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 15px;
+      }
+      
+      .clients-grid img {
+        max-width: 100px;
+      }
+    }
+    
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo.svg" alt="Logo"/>
+          <span>A L ’ A E A L I COMPANY</span>
+        </a>
+        
+             
+      <div style="display: flex; align-items: center; gap: 10px;">
+ 
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+   <a href="portfolio.html" class="language-switcher" style="font-size: 18px;">
+    <i class="fas fa-globe"></i> AR
+  </a>
+</div>
+      </div>
+    </div>
+    
+    <!-- Full-width Navigation -->
+    <nav class="full-nav" id="fullNav">
+      <ul class="nav-links">
+        <li><a href="home_en.html">Home</a></li>
+        <li><a href="about_en.html">About Us</a></li>
+        <li><a href="service_en.html">Services</a></li>
+        <li><a href="portfolio_en.html" class="active">Our Companies</a></li>
+        <li><a href="contact_en.html">Contact Us</a></li>
+      </ul>
+      
+      
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero" data-aos="fade-up">
+    <div class="container">
+      <h2>Our Companies</h2>
+      <p>
+        Since the launch of Saudi Arabia's Vision 2030, the focus has been on building, improving systems and legislation, and implementing economic and social reforms through initiatives that have created tremendous achievements on the path to a prosperous economy.
+        From here, our project began to be one of the logistical pillars for our Kingdom through a team with expertise, capabilities, and purposeful vision.
+      </p>
+    </div>
+  </section>
+
+  <!-- Our Companies Section -->
+  <section class="clients-section" data-aos="fade-up">
+    <div class="container">
+      <h2>Our Companies</h2>
+      <p>We are proud of our partnership with a distinguished group of clients across various sectors</p>
+      
+      <div class="clients-grid">
+        <img src="assets/img/company1.png" alt="Client 1" data-aos="zoom-in">
+        <img src="assets/img/company2.png" alt="Client 2" data-aos="zoom-in" data-aos-delay="100">
+        <img src="assets/img/company3.png" alt="Client 3" data-aos="zoom-in" data-aos-delay="200">
+        <img src="assets/img/company4.png" alt="Client 4" data-aos="zoom-in" data-aos-delay="300">
+        <img src="assets/img/company5.png" alt="Client 5" data-aos="zoom-in" data-aos-delay="400">
+        <img src="assets/img/company6.png" alt="Client 6" data-aos="zoom-in" data-aos-delay="500">
+        <img src="assets/img/company7.png" alt="Client 7" data-aos="zoom-in" data-aos-delay="600">
+        <img src="assets/img/company8.png" alt="Client 8" data-aos="zoom-in" data-aos-delay="700">
+        <img src="assets/img/company9.png" alt="Client 9" data-aos="zoom-in" data-aos-delay="800">
+        <img src="assets/img/company10.png" alt="Client 10" data-aos="zoom-in" data-aos-delay="900">
+        <img src="assets/img/company11.png" alt="Client 11" data-aos="zoom-in" data-aos-delay="1000">
+        <img src="assets/img/company12.png" alt="Client 12" data-aos="zoom-in" data-aos-delay="1100">
+        <img src="assets/img/company13.png" alt="Client 13" data-aos="zoom-in" data-aos-delay="1200">
+        <img src="assets/img/company14.png" alt="Client 14" data-aos="zoom-in" data-aos-delay="1300">
+        <img src="assets/img/company15.png" alt="Client 15" data-aos="zoom-in" data-aos-delay="1400">
+        <img src="assets/img/company16.png" alt="Client 16" data-aos="zoom-in" data-aos-delay="1500">
+        <img src="assets/img/company17.png" alt="Client 17" data-aos="zoom-in" data-aos-delay="1600">
+        <img src="assets/img/company18.png" alt="Client 18" data-aos="zoom-in" data-aos-delay="1700">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <div class="footer-col about">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-building" style="font-size: 32px; margin-right: 10px;"></i>
+            <span style="color: var(--accent-color); font-weight: bold;">Al-A'ali Company</span>
+          </a>
+            <p style="height: 5px;"></p>
+          <p>
+            We provide you with the best services with the highest standards of quality and excellence in various fields.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about_en.html">About Us</a></li>
+            <li><a href="service_en.html">Services</a></li>
+            <li><a href="portfolio_en.html">Our Companies</a></li>
+            <li><a href="contact_en.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Domestic Labor</a></li>
+            <li><a href="#">Operation of Factories and Projects</a></li>
+            <li><a href="#">Renovation of Private and Government Buildings</a></li>
+            <li><a href="#">Building Maintenance Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
+            <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
+            <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year">2023</span> Al-A'ali Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+     
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+    });
+    
+    // Full-width Navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const fullNav = document.getElementById('fullNav');
+    const body = document.body;
+    
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      fullNav.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        fullNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    });
+    
+    // Scroll effect on Header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Add current year to footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

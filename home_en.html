@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>XYZ Company - Home</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet"/>
+
+  <!-- Swiper & AOS CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --primary-color: #20445a;
+      --secondary-color: #2c5877;
+      --accent-color: #f8b500;
+      --text-color: #fff;
+      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Cairo', sans-serif;
+    }
+    
+    body {
+      overflow-x: hidden;
+      padding-top: 0px;
+      direction: ltr; /* تغيير الاتجاه إلى LTR */
+    }
+
+    /* Splash Screen */
+    #splash {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 6000;
+      transition: opacity 1s ease;
+    }
+    #splash img {
+      width: 300px;
+      height: auto;
+      animation: zoomIn 4s ease;
+    }
+    @keyframes zoomIn {
+      from { transform: scale(0.5); opacity: 0; }
+      to   { transform: scale(1); opacity: 1; }
+    }
+
+    /* New Full-width Navbar Styles */
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: var(--primary-color);
+      z-index: 5000;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+    }
+    
+    .site-header.scrolled {
+      background-color: rgba(32, 68, 90, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 5px 0;
+    }
+    
+    .header-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+      position: relative;
+    }
+    
+    .logo {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      z-index: 100;
+    }
+    
+    .logo img {
+      height: 40px;
+      margin-right: 10px; /* تغيير الهامش ليتناسب مع LTR */
+      transition: var(--transition);
+    }
+    
+    .logo span {
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-color);
+    }
+    
+    .language-switcher {
+      color: var(--text-color);
+      margin-left: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      transition: var(--transition);
+    }
+    
+    .language-switcher:hover {
+      color: var(--accent-color);
+    }
+    
+    .language-switcher i {
+      margin-right: 5px;
+    }
+    
+    /* Full-width Navigation */
+    .full-nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: var(--primary-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: var(--transition);
+      transform: translateY(-100%);
+    }
+    
+    .full-nav.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    
+    .nav-links {
+      list-style: none;
+      text-align: center;
+    }
+    
+    .nav-links li {
+      margin: 25px 0;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-links li {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .full-nav.active .nav-links li:nth-child(1) { transition-delay: 0.1s; }
+    .full-nav.active .nav-links li:nth-child(2) { transition-delay: 0.2s; }
+    .full-nav.active .nav-links li:nth-child(3) { transition-delay: 0.3s; }
+    .full-nav.active .nav-links li:nth-child(4) { transition-delay: 0.4s; }
+    .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
+    
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-size: 18px;
+      font-weight: 600;
+      padding: 10px 20px;
+      display: inline-block;
+      position: relative;
+      transition: var(--transition);
+    }
+    
+    .nav-links a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* تغيير من right إلى left ليتناسب مع LTR */
+      width: 0;
+      height: 3px;
+      background: var(--accent-color);
+      transition: var(--transition);
+    }
+    
+    .nav-links a:hover::before {
+      width: 100%;
+    }
+    
+    .nav-links a:hover {
+      color: var(--accent-color);
+      transform: translateX(10px); /* تغيير من -10px إلى 10px ليتناسب مع LTR */
+    }
+    
+    .nav-links a.active {
+      color: var(--accent-color);
+    }
+    
+    .nav-links a.active::before {
+      width: 100%;
+    }
+    
+    /* Menu Toggle Button */
+    .menu-toggle {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 100;
+      background: none;
+      border: none;
+    }
+    
+    .menu-toggle span {
+      position: absolute;
+      width: 30px;
+      height: 3px;
+      background: var(--text-color);
+      border-radius: 3px;
+      transition: var(--transition);
+    }
+    
+    .menu-toggle span:nth-child(1) {
+      transform: translateY(-10px);
+    }
+    
+    .menu-toggle span:nth-child(3) {
+      transform: translateY(10px);
+    }
+    
+    .menu-toggle.active span:nth-child(1) {
+      transform: translateY(0) rotate(45deg);
+      background: var(--accent-color);
+    }
+    
+    .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .menu-toggle.active span:nth-child(3) {
+      transform: translateY(0) rotate(-45deg);
+      background: var(--accent-color);
+    }
+    
+    /* Social Icons in Nav */
+    .nav-social {
+      position: absolute;
+      bottom: 40px;
+      display: flex;
+      gap: 20px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+    
+    .full-nav.active .nav-social {
+      opacity: 1;
+      transform: translateY(0);
+      transition-delay: 0.6s;
+    }
+    
+    .nav-social a {
+      color: var(--text-color);
+      font-size: 24px;
+      transition: var(--transition);
+    }
+    
+    .nav-social a:hover {
+      color: var(--accent-color);
+      transform: translateY(-5px);
+    }
+
+    /* Hero Slider */
+    .hero {
+      position: relative;
+      height: 95vh;
+      overflow: hidden;
+    }
+    
+    .hero-swiper {
+      width: 100%;
+      height: 100%;
+    }
+    
+    .hero-slide {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--bg) no-repeat center center/cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: white;
+      padding: 20px;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      z-index: 2;
+    }
+    
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+    
+    .hero-content p {
+      font-size: 1.5rem;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+    
+    .swiper-pagination-bullet {
+      background: white;
+      opacity: 0.7;
+      width: 12px;
+      height: 12px;
+    }
+    
+    .swiper-pagination-bullet-active {
+      background: var(--accent-color);
+      opacity: 1;
+    }
+    
+    .swiper-button-next, .swiper-button-prev {
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      transition: var(--transition);
+    }
+    
+    .swiper-button-next:after, .swiper-button-prev:after {
+      font-size: 20px;
+    }
+    
+    .swiper-button-next:hover, .swiper-button-prev:hover {
+      background: var(--accent-color);
+    }
+
+    /* Vision Section */
+    .vision-section {
+      padding: 100px 0 60px;
+      background: #f9f9f9;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .vision-inner {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+    
+    .vision-text {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .vision-text h2 {
+      font-size: 28px;
+      color: #20445a;
+      margin-bottom: 20px;
+    }
+    
+    .vision-text p {
+      font-size: 17px;
+      line-height: 1.8;
+      color: #333;
+    }
+    
+    .vision-img {
+      flex: 1;
+      min-width: 300px;
+    }
+    
+    .vision-img img {
+      width: 100%;
+      border-radius: 0px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      max-height: 400px;
+      object-fit: cover;
+    }
+
+    /* Services Section */
+    .section {
+      padding: 80px 0;
+    }
+    
+    .section-title {
+      font-size: 28px;
+      color: #20445a;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .grid {
+      display: grid;
+      gap: 30px;
+    }
+    
+    .cards-3 {
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+    
+    .card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+    }
+    
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .card img {
+      max-width: 80px;
+      height: auto;
+      margin-bottom: 20px;
+    }
+    
+    .card h3 {
+      font-size: 22px;
+      color: #20445a;
+      margin-bottom: 15px;
+    }
+    
+    .card p {
+      color: #666;
+      line-height: 1.6;
+    }
+    
+    .center {
+      text-align: center;
+    }
+    
+    .mt-24 {
+      margin-top: 24px;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+    }
+
+    /* Clients Section */
+    .clients-section {
+      padding: 60px 0;
+      background: #fff;
+      text-align: center;
+    }
+    
+    .clients-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 20px;
+      align-items: center;
+    }
+    
+    .clients-grid img {
+      width: 100%;
+      max-width: 140px;
+      margin: auto;
+      filter: grayscale(100%);
+      transition: all 0.3s ease;
+    }
+    
+    .clients-grid img:hover {
+      filter: grayscale(0%);
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    .site-footer {
+      background: var(--primary-color);
+      color: #fff;
+      margin-top: 60px;
+    }
+    
+    .footer-top {
+      padding: 50px 0 30px;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    
+    .footer-col h4 {
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+    
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0; /* تغيير من right إلى left ليتناسب مع LTR */
+      width: 50px;
+      height: 2px;
+      background: var(--accent-color);
+    }
+    
+    .footer-col ul {
+      list-style: none;
+      padding-left: 0; /* إزالة padding الافتراضي */
+    }
+    
+    .footer-col ul li {
+      margin-bottom: 12px;
+    }
+    
+    .footer-col ul li a {
+      color: #ccc;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .footer-col ul li a:hover {
+      color: var(--accent-color);
+    }
+    
+    .footer-col p {
+      color: #ccc;
+      margin-bottom: 20px;
+    }
+    
+    .social-links {
+      display: flex;
+      gap: 15px;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255,255,255,0.1);
+      border-radius: 50%;
+      color: #fff;
+      transition: all 0.3s;
+      text-decoration: none;
+    }
+    
+    .social-links a:hover {
+      background: var(--accent-color);
+      color: #333;
+    }
+    
+    .contact-info {
+      list-style: none;
+      padding-left: 0; /* إزالة padding الافتراضي */
+    }
+    
+    .contact-info li {
+      color: #ccc;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+    
+    .contact-info li i {
+      margin-right: 10px; /* تغيير من left إلى right ليتناسب مع LTR */
+      color: var(--accent-color);
+    }
+    
+    .footer-bottom {
+      background: #1a384b;
+      padding: 20px 0;
+      text-align: center;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 2.5rem;
+      }
+      
+      .hero-content p {
+        font-size: 1.2rem;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .vision-inner {
+        flex-direction: column;
+      }
+      
+      .language-switcher {
+        margin-left: 10px;
+        font-size: 14px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+      
+      .hero-content p {
+        font-size: 1rem;
+      }
+      
+      .card {
+        padding: 20px 15px;
+      }
+    }
+
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Splash Screen -->
+  <div id="splash">
+    <img src="assets/img/splach.png" alt="Logo">
+  </div>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="header-inner">
+        <a href="index.html" class="logo">
+          <img src="assets/img/logo.svg" alt="Logo" />
+          <span>A L ’ A E A L I COMPANY</span>
+        </a>
+        
+      <div style="display: flex; align-items: center; gap: 10px;">
+ 
+
+  <!-- Menu Toggle Button -->
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+   <a href="index.html" class="language-switcher" style="font-size: 18px;">
+    <i class="fas fa-globe"></i> AR
+  </a>
+</div>
+
+      </div>
+    </div>
+    
+    <!-- Full-width Navigation -->
+    <nav class="full-nav" id="fullNav">
+      <ul class="nav-links">
+        <li><a href="home_en.html" class="active">Home</a></li>
+        <li><a href="about_en.html">About Us</a></li>
+        <li><a href="service_en.html">Services</a></li>
+        <li><a href="portfolio_en.html">Our Companies</a></li>
+        <li><a href="contact_en.html">Contact Us</a></li>
+      </ul>
+     
+    </nav>
+  </header>
+
+  <!-- Hero Slider -->
+  <section class="hero">
+    <div class="swiper hero-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/etienne.jpg')">
+          <div class="hero-content" data-aos="fade-up">
+             <h1>Construction</h1>
+             <p>Implementing high-quality building projects according to the highest standards.</p>
+          </div>
+        </div>
+        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/wFQ3NyRY0aQRZ.jpg')">
+          <div class="hero-content" data-aos="fade-right">
+            <h1>Maintenance</h1>
+            <p>Maintenance works for buildings and equipment to ensure continuity and efficiency.</p>
+          </div>
+        </div>
+        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/Cwjzo6fVN.jpg')">
+          <div class="hero-content" data-aos="zoom-in">
+            <h1>Operation</h1>
+            <p>Professional operation and management of projects to ensure optimal performance.</p>
+          </div>
+        </div>
+        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/JbqRqt6jx.jpg')">
+          <div class="hero-content" data-aos="flip-left">
+            <h1>Specialized Team</h1>
+            <p>Diverse expertise to ensure quality implementation and fast completion.</p>
+          </div>
+        </div>
+        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/9QMw2iW1.jpg')">
+          <div class="hero-content" data-aos="fade-up-left">
+            <h1>Safety & Quality</h1>
+            <p>Commitment to safety and quality standards in all projects.</p>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section class="vision-section" data-aos="fade-up">
+    <div class="container vision-inner">
+      <div class="vision-text" data-aos="fade-right" data-aos-duration="1200">
+        <h2>Our Vision</h2>
+        <p style="line-height: 2">Since the launch of Saudi Arabia's Vision 2030, the focus has been on building, developing and improving systems and legislation, and implementing economic and social reforms through a large number of initiatives that have made huge leaps and unprecedented achievements on the path towards a prosperous economy.
+From here, our project began to be one of the logistical pillars of our kingdom, and we formed a team with experiences, capabilities and a purposeful vision to have a profound impact and help achieve goals, accelerate the pace of production and raise the level of competition in all sectors.
+        </p>
+      </div>
+      <div class="vision-img" data-aos="fade-left" data-aos-duration="1200">
+        <img src="assets/img/LC76PEMMlV.jpg" alt="Our Vision">
+      </div>
+    </div>
+  </section>
+ 
+  
+<!-- Services Teaser -->
+<section class="section" data-aos="fade-up">
+  <div class="container">
+    <h2 class="section-title">What We Offer?</h2>
+
+    <div class="grid cards-3">
+      <!-- Construction Contracts -->
+      <div class="card">
+        <img src="assets/img/h8Unk1f1.png" width="200px" alt="Service 1"/>
+        <h3>Construction Contracts</h3>
+        <p>We implement construction contracts with high quality according to the latest engineering standards.</p>
+      </div>
+
+      <!-- Building Maintenance Works -->
+      <div class="card">
+        <img src="assets/img/xJNkMnAk.png" alt="Service 2"/>
+        <h3>Building Maintenance Works</h3>
+        <p>Comprehensive maintenance services for buildings to ensure operational continuity and efficiency.</p>
+      </div>
+
+      <!-- Painting and Finishing Works -->
+      <div class="card">
+        <img src="assets/img/PZfVhzEQ.png" alt="Service 3"/>
+        <h3>Painting and Finishing Works</h3>
+        <p>Internal and external finishes and paintings with the highest degrees of quality and accuracy.</p>
+      </div>
+    </div>
+
+    <div class="grid cards-3" style="padding-top: 10px;">
+      <!-- Domestic Labor -->
+      <div class="card">
+        <img src="assets/img/MaeVb32.png" alt="Service 4"/>
+        <h3>Domestic Labor</h3>
+        <p>Providing qualified and trained cadres to carry out household work efficiently.</p>
+      </div>
+
+      <!-- Operation of Laboratories and Projects -->
+      <div class="card">
+        <img src="assets/img/hpvkHqM.png" alt="Service 5"/>
+        <h3>Operation of Labs & Projects</h3>
+        <p>Management and operation of laboratories and projects using the latest technologies.</p>
+      </div>
+
+      <!-- Restoration of Private and Government Buildings -->
+      <div class="card">
+        <img src="assets/img/gRAcKTP.png" alt="Service 6"/>
+        <h3>Building Restoration</h3>
+        <p>Specialized restoration works for private and government buildings to maintain their quality.</p>
+      </div>
+    </div>
+
+    <div class="center mt-24">
+      <a class="btn" href="services.html">All Services</a>
+    </div>
+  </div>
+</section>
+
+  <!-- Clients Section -->
+  <section class="clients-section" data-aos="fade-up">
+    <div class="container">
+      <h2 class="section-title">Our Companies</h2>
+      <div class="clients-grid">
+        <img src="assets/img/company1.png" alt="Company 1" data-aos="zoom-in">
+        <img src="assets/img/company2.png" alt="Company 2" data-aos="zoom-in" data-aos-delay="100">
+        <img src="assets/img/company3.png" alt="Company 3" data-aos="zoom-in" data-aos-delay="200">
+        <img src="assets/img/company4.png" alt="Company 4" data-aos="zoom-in" data-aos-delay="300">
+        <img src="assets/img/company5.png" alt="Company 5" data-aos="zoom-in" data-aos-delay="400">
+        <img src="assets/img/company6.png" alt="Company 6" data-aos="zoom-in" data-aos-delay="500">
+        <img src="assets/img/company7.png" alt="Company 7" data-aos="zoom-in" data-aos-delay="600">
+        <img src="assets/img/company8.png" alt="Company 8" data-aos="zoom-in" data-aos-delay="700">
+        <img src="assets/img/company9.png" alt="Company 9" data-aos="zoom-in" data-aos-delay="800">
+        <img src="assets/img/company10.png" alt="Company 10" data-aos="zoom-in" data-aos-delay="900">
+        <img src="assets/img/company11.png" alt="Company 11" data-aos="zoom-in" data-aos-delay="1000">
+        <img src="assets/img/company12.png" alt="Company 12" data-aos="zoom-in" data-aos-delay="1100">
+        <img src="assets/img/company13.png" alt="Company 13" data-aos="zoom-in" data-aos-delay="1200">
+        <img src="assets/img/company14.png" alt="Company 14" data-aos="zoom-in" data-aos-delay="1300">
+        <img src="assets/img/company15.png" alt="Company 15" data-aos="zoom-in" data-aos-delay="1400">
+        <img src="assets/img/company16.png" alt="Company 16" data-aos="zoom-in" data-aos-delay="1500">
+        <img src="assets/img/company17.png" alt="Company 17" data-aos="zoom-in" data-aos-delay="1600">
+        <img src="assets/img/company18.png" alt="Company 18" data-aos="zoom-in" data-aos-delay="1700">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-top">
+      <div class="container footer-grid">
+        
+        <div class="footer-col about">
+          <a href="index.html" class="footer-logo">
+            <i class="fas fa-building" style="font-size: 32px; margin-right: 10px;"></i>
+            <span style="color: var(--accent-color); font-weight: bold;">Al A'eali Company</span>
+          </a>
+           <p style="height: 5px;"></p>
+          <p>
+            We offer you our best services with the highest standards of quality and excellence in various fields.
+          </p>
+          <div class="social-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+          </div>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="about_en.html">About Us</a></li>
+            <li><a href="service_en.html">Services</a></li>
+            <li><a href="portfolio_en.html">Our Companies</a></li>
+            <li><a href="contact_en.html">Contact Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Our Services</h4>
+          <ul>
+            <li><a href="#">Domestic Labor</a></li>
+            <li><a href="#">Operation of Labs & Projects</a></li>
+            <li><a href="#">Building Restoration</a></li>
+            <li><a href="#">Building Maintenance</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <ul class="contact-info">
+            <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
+            <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
+            <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="year">2023</span> Al A'eali Company. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+     
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: true,
+      offset: 100
+    });
+    
+    // Initialize Swiper
+    var swiper = new Swiper(".hero-swiper", {
+      spaceBetween: 0,
+      centeredSlides: true,
+      speed: 1000,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop: true,
+    });
+    
+    // Splash Screen
+    window.addEventListener("load", () => {
+      setTimeout(() => {
+        const splash = document.getElementById("splash");
+        splash.style.opacity = "0";
+        setTimeout(() => splash.style.display = "none", 1000);
+      }, 3000);
+    });
+    
+    // Full-width Navigation
+    const menuToggle = document.getElementById('menuToggle');
+    const fullNav = document.getElementById('fullNav');
+    const body = document.body;
+    
+    menuToggle.addEventListener('click', function() {
+      this.classList.toggle('active');
+      fullNav.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    });
+    
+    // Close menu when clicking on a link
+    const navLinks = document.querySelectorAll('.nav-links a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        menuToggle.classList.remove('active');
+        fullNav.classList.remove('active');
+        body.classList.remove('no-scroll');
+      });
+    });
+    
+    // Scroll effect on Header
+    window.addEventListener('scroll', function() {
+      const header = document.querySelector('.site-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+    
+    // Add current year to footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
