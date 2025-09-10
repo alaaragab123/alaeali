@@ -46,6 +46,8 @@
       z-index: 5000;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
+     direction: ltr; /* LTR direction */
+
     }
     
     .site-header.scrolled {
@@ -187,38 +189,54 @@
       background: none;
       border: none;
     }
-    
+     .menu-toggle {
+  position: relative;
+  width: 30px;
+  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
+  cursor: pointer;
+}
+
     .menu-toggle span {
-      position: absolute;
-      width: 30px;
-      height: 3px;
-      background: var(--text-color);
-      border-radius: 3px;
-      transition: var(--transition);
-    }
-    
-    .menu-toggle span:nth-child(1) {
-      transform: translateY(-10px);
-    }
-    
-    .menu-toggle span:nth-child(3) {
-      transform: translateY(10px);
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
-      background: var(--accent-color);
-    }
-    
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
-      background: var(--accent-color);
-    }
-    
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* أول خط */
+.menu-toggle span:nth-child(1) {
+  transform: translateY(0);
+}
+
+/* تاني خط */
+.menu-toggle span:nth-child(2) {
+  transform: translateY(8px);
+}
+
+/* تالت خط */
+.menu-toggle span:nth-child(3) {
+  transform: translateY(16px);
+}
+
+/* عند التفعيل */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--accent-color);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(8px) rotate(-45deg);
+  background: var(--accent-color);
+}
+
     /* Social Icons in Nav */
     .nav-social {
       position: absolute;
@@ -524,7 +542,22 @@
       padding: 20px 0;
       text-align: center;
     }
-    
+    .full-nav {
+  max-height: 100vh;     /* القايمة تاخد أقصى ارتفاع للشاشة */
+  overflow-y: auto;      /* يضيف Scroll لو المحتوى أطول من الشاشة */
+}
+.full-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.full-nav::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.full-nav::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
     /* Responsive Design */
     @media (max-width: 992px) {
       .contact-grid {
@@ -562,45 +595,44 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-           <img src="assets/img/Sep.png" alt="Logo" />
-          <span>GROUP AL'AEALI</span>
-        </a>
-        
-             
-      <div style="display: flex; align-items: center; gap: 10px;">
- 
 
-  <!-- Menu Toggle Button -->
-  <button class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-   <a href="contact.html" class="language-switcher" style="font-size: 18px;">
-    <i class="fas fa-globe"></i> AR
-  </a>
-</div>
-      </div>
-    </div>
-    
-    <!-- Full-width Navigation -->
-    <nav class="full-nav" id="fullNav">
-      <ul class="nav-links">
-        <li><a href="home_en.html">Home</a></li>
-        <li><a href="about_en.html">About Us</a></li>
-        <li><a href="service_en.html">Services</a></li>
-        <li><a href="portfolio_en.html">Our Companies</a></li>
-        <li><a href="contact_en.html" class="active">Contact Us</a></li>
-      </ul>
-      
-    
-    </nav>
-  </header>
+  <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/Sep.png" alt="Logo" />
+                    <span>GROUP AL'AEALI</span>
+                </a>
+                
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <!-- Menu Toggle Button -->
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a href="contact.html" class="language-switcher" style="font-size: 18px;">
+                        <i class="fas fa-globe"></i> AR
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Full-width Navigation -->
+        <nav class="full-nav" id="fullNav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about_en.html">About Us</a></li>
+                <li><a href="vision_en.html">Our Vision</a></li>
+                <li><a href="message_en.html">Message</a></li>
+                <li><a href="board_en.html">Board of Directors</a></li>
+                <li><a href="clients_en.html">Our Clients</a></li>
+                <li><a href="company_en.html">Our Companies</a></li>
+                <li><a href="contact_en.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
   <!-- Page Hero -->
   <section class="contact-hero">
@@ -731,7 +763,7 @@
           <ul>
             <li><a href="about_en.html">About Us</a></li>
             <li><a href="service_en.html">Services</a></li>
-            <li><a href="portfolio_en.html">Our Companies</a></li>
+            <li><a href="company_en.html">Our Companies</a></li>
             <li><a href="contact_en.html">Contact Us</a></li>
           </ul>
         </div>

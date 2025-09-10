@@ -226,8 +226,14 @@
       background: none;
       border: none;
     }
-    
-   .menu-toggle span {
+     .menu-toggle {
+  position: relative;
+  width: 30px;
+  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
+  cursor: pointer;
+}
+
+.menu-toggle span {
   position: absolute;
   top: 0;
   left: 0;
@@ -236,12 +242,6 @@
   background: var(--text-color);
   border-radius: 3px;
   transition: var(--transition);
-}
- .menu-toggle {
-  position: relative;
-  width: 30px;
-  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
-  cursor: pointer;
 }
 
 /* أول خط */
@@ -274,7 +274,6 @@
   background: var(--accent-color);
 }
 
-    
     /* Social Icons in Nav */
     .nav-social {
       position: absolute;
@@ -1086,11 +1085,7 @@
 </head>
 <body>
 
-  <!-- Splash Screen -->
-  <div id="splash">
-    <img src="assets/img/splach.png" alt="Logo">
-  </div>
-
+ 
 
   <!-- Header -->
     <header class="site-header">
@@ -1108,7 +1103,7 @@
                         <span></span>
                         <span></span>
                     </button>
-                    <a href="index.html" class="language-switcher" style="font-size: 18px;">
+                    <a href="services.html" class="language-switcher" style="font-size: 18px;">
                         <i class="fas fa-globe"></i> AR
                     </a>
                 </div>
@@ -1130,116 +1125,6 @@
         </nav>
     </header>
 
-
-  <!-- Hero Slider -->
-  <section class="hero" onclick="window.location.href='services_en.html'" style="cursor: pointer;">
-    <div class="swiper hero-swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/etienne.jpg')">
-          <div class="hero-content" data-aos="fade-up">
-             <h1>Construction</h1>
-             <p>Implementing high-quality construction projects according to the highest standards.</p>
-          </div>
-        </div>
-        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/wFQ3NyRY0aQRZ.jpg')">
-          <div class="hero-content" data-aos="fade-right">
-            <h1>Maintenance</h1>
-            <p>Maintenance works for buildings and equipment to ensure continuity and efficiency.</p>
-          </div>
-        </div>
-        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/Cwjzo6fVN.jpg')">
-          <div class="hero-content" data-aos="zoom-in">
-            <h1>Operation</h1>
-            <p>Professional operation and management of projects to ensure optimal performance.</p>
-          </div>
-        </div>
-        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/JbqRqt6jx.jpg')">
-          <div class="hero-content" data-aos="flip-left">
-            <h1>Specialized Team</h1>
-            <p>Diverse expertise to ensure quality implementation and fast completion.</p>
-          </div>
-        </div>
-        <div class="swiper-slide hero-slide" style="--bg:url('assets/img/9QMw2iW1.jpg')">
-          <div class="hero-content" data-aos="fade-up-left">
-            <h1>Safety & Quality</h1>
-            <p>Commitment to safety and quality standards in all projects.</p>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div>
-  </section>
-
-  <!-- Vision Section -->
-  <section class="vision-section" data-aos="fade-up">
-    <div class="container vision-inner">
-      <div class="vision-text" data-aos="zoom-in" data-aos-duration="1200">
-        <h2>Our News</h2>
-        <p style="line-height: 2">Since the launch of Saudi Arabia's Vision 2030, the focus has been on building, developing and improving systems and legislation, and implementing economic and social reforms through a large number of initiatives that have made huge leaps and unprecedented achievements on the path to achieving a prosperous economy.
-From here, our project began to be one of the logistical pillars of our Kingdom, and we formed a team with experience, capabilities and a purposeful vision to have a profound impact and help achieve goals, accelerate the pace of production and raise the level of competition in all sectors.
-        </p>
-      </div>
-      <div class="vision-img" data-aos="zoom-in" data-aos-duration="1200">
-        <img src="assets/img/JbqRqt6jx.jpg" alt="Our Vision">
-      </div>
-    </div>
-  </section>
- 
-  
-<!-- Services Teaser -->
-<section class="section" data-aos="fade-up">
-  <div class="container">
-    <h2 class="section-title">Why Choose Us</h2>
-
-    <div class="grid cards-3">
-      <!-- Construction Contracts -->
-      <div class="card">
-        <img src="assets/img/h8Unk1f1.png" width="200px" alt="Service 1"/>
-        <h3>Construction Contracts</h3>
-        <p>We implement construction contracts with high quality according to the latest engineering standards.</p>
-      </div>
-
-      <!-- Building Maintenance Works -->
-      <div class="card">
-        <img src="assets/img/xJNkMnAk.png" alt="Service 2"/>
-        <h3>Building Maintenance Works</h3>
-        <p>Comprehensive building maintenance services to ensure operational continuity with efficiency.</p>
-      </div>
-
-      <!-- Painting and Finishing Works -->
-      <div class="card">
-        <img src="assets/img/PZfVhzEQ.png" alt="Service 3"/>
-        <h3>Painting and Finishing Works</h3>
-        <p>Internal and external finishing and painting with the highest levels of quality and precision.</p>
-      </div>
-    </div>
-
-    <div class="grid cards-3" style="padding-top: 10px;">
-      <!-- Domestic Labor -->
-      <div class="card">
-        <img src="assets/img/MaeVb32.png" alt="Service 4"/>
-        <h3>Domestic Labor</h3>
-        <p>Providing qualified and trained cadres to efficiently carry out household tasks.</p>
-      </div>
-
-      <!-- Operation of Labs and Projects -->
-      <div class="card">
-        <img src="assets/img/hpvkHqM.png" alt="Service 5"/>
-        <h3>Operation of Labs and Projects</h3>
-        <p>Management and operation of laboratories and projects using the latest technologies.</p>
-      </div>
-
-      <!-- Restoration of Private and Government Buildings -->
-      <div class="card">
-        <img src="assets/img/gRAcKTP.png" alt="Service 6"/>
-        <h3>Restoration of Private and Government Buildings</h3>
-        <p>Specialized restoration works for private and government buildings to maintain their quality.</p>
-      </div>
-    </div>
-
-    
-  </div>
-</section>
 
 
   <section class="services-section">
@@ -1264,9 +1149,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Varied foods on request</li>
           </ul>
           <p style="height: 7px;""></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Restaurant">Request This Service</button>
         </div>
 
         <!-- Nurses -->
@@ -1283,9 +1166,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Post-operative care</li>
           </ul>
          <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Nurses">Request This Service</button>
         </div>
 
         <!-- Domestic Labor -->
@@ -1302,9 +1183,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Laundry and ironing</li>
           </ul>
                    <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Domestic Labor">Request This Service</button>
         </div>
 
         <!-- Lab Operation -->
@@ -1321,9 +1200,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Staff training</li>
           </ul>
           <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Lab Operation">Request This Service</button>
         </div>
 
         <!-- Restoration Projects -->
@@ -1340,9 +1217,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Government facilities restoration</li>
           </ul>
            <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Restoration Projects">Request This Service</button>
         </div>
 
         <!-- Construction Contracts -->
@@ -1359,9 +1234,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Execution supervision</li>
           </ul>
            <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Construction Contracts">Request This Service</button>
         </div>
 
         <!-- Maintenance Works -->
@@ -1378,9 +1251,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Home appliance maintenance</li>
           </ul>
            <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Maintenance Works">Request This Service</button>
         </div>
 
         <!-- Painting and Finishing -->
@@ -1397,102 +1268,81 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
             <li>Modern decorations</li>
           </ul>
         <p style="height: 7px;"></p>
-<button class="btn btn-accent request-service-btn" onclick="window.location.href='services_en.html'">
-  Request This Service
-</button>
+          <button class="btn btn-accent request-service-btn" data-service="Painting and Finishing">Request This Service</button>
         </div>
       </div>
     </div>
   </section>
 
-
-
-  <!-- Achievements Section -->
-  <section class="achievements-section" id="achievements">
-    <div class="achievements-container">
-      <div class="achievements-header" data-aos="fade-up">
-        <h2>Our Achievements</h2>
-        <p>We are proud of what we have achieved over the years</p>
-      </div>
-      
-      <div class="achievements-grid">
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
-          <div class="achievement-icon">
-            <i class="fas fa-building"></i>
-          </div>
-          <h3>Construction Projects</h3>
-          <p>Completed more than 50 construction projects with efficiency and high quality.</p>
-        </div>
-        
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
-          <div class="achievement-icon">
-            <i class="fas fa-users"></i>
-          </div>
-          <h3>Loyal Clients</h3>
-          <p>Gained the trust of more than 200 clients in various sectors.</p>
-        </div>
-        
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
-          <div class="achievement-icon">
-            <i class="fas fa-award"></i>
-          </div>
-          <h3>Excellence Awards</h3>
-          <p>Received several awards in the field of quality and excellence.</p>
-        </div>
-        
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
-          <div class="achievement-icon">
-            <i class="fas fa-chart-line"></i>
-          </div>
-          <h3>Sustained Growth</h3>
-          <p>Steady growth in the volume of business and projects implemented annually.</p>
-        </div>
-        
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="500">
-          <div class="achievement-icon">
-            <i class="fas fa-handshake"></i>
-          </div>
-          <h3>Strategic Partnerships</h3>
-          <p>Established partnerships with major local and international companies.</p>
-        </div>
-        
-        <div class="achievement-card" data-aos="fade-up" data-aos-delay="600">
-          <div class="achievement-icon">
-            <i class="fas fa-medal"></i>
-          </div>
-          <h3>Recognized Quality</h3>
-          <p>Obtained international quality certificates in the field of construction.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Clients Section -->
-  <section class="clients-section" data-aos="fade-up">
+  <!-- Service Request Section -->
+  <section class="service-request" id="requestService">
     <div class="container">
-      <h2 class="section-title">Our Clients</h2>
-      <div class="clients-grid">
-        <img src="assets/img/company1.PNG" alt="Client 1" data-aos="zoom-in">
-        <img src="assets/img/company2.PNG" alt="Client 2" data-aos="zoom-in" data-aos-delay="100">
-        <img src="assets/img/company3.PNG" alt="Client 3" data-aos="zoom-in" data-aos-delay="200">
-        <img src="assets/img/company4.PNG" alt="Client 4" data-aos="zoom-in" data-aos-delay="300">
-        <img src="assets/img/company5.PNG" alt="Client 5" data-aos="zoom-in" data-aos-delay="400">
-        <img src="assets/img/company6.PNG" alt="Client 6" data-aos="zoom-in" data-aos-delay="500">
-        <img src="assets/img/company7.PNG" alt="Client 7" data-aos="zoom-in" data-aos-delay="600">
-        <img src="assets/img/company8.PNG" alt="Client 8" data-aos="zoom-in" data-aos-delay="700">
-        <img src="assets/img/company9.PNG" alt="Client 9" data-aos="zoom-in" data-aos-delay="800">
-        <img src="assets/img/company10.PNG" alt="Client 10" data-aos="zoom-in" data-aos-delay="900">
-        <img src="assets/img/company11.PNG" alt="Client 11" data-aos="zoom-in" data-aos-delay="1000">
-        <img src="assets/img/company12.PNG" alt="Client 12" data-aos="zoom-in" data-aos-delay="1100">
-        <img src="assets/img/company13.PNG" alt="Client 13" data-aos="zoom-in" data-aos-delay="1200">
-        <img src="assets/img/company14.PNG" alt="Client 14" data-aos="zoom-in" data-aos-delay="1300">
-        <img src="assets/img/company15.PNG" alt="Client 15" data-aos="zoom-in" data-aos-delay="1400">
-        <img src="assets/img/company16.PNG" alt="Client 16" data-aos="zoom-in" data-aos-delay="1500">
-        <img src="assets/img/company17.PNG" alt="Client 17" data-aos="zoom-in" data-aos-delay="1600">
-        <img src="assets/img/company18.PNG" alt="Client 18" data-aos="zoom-in" data-aos-delay="1700">
+      <div class="request-container">
+        <div class="request-header">
+          <h2>Request Service</h2>
+          <p>Fill out the form below to request the service and we will contact you to confirm details and price</p>
+        </div>
+        
+        <form class="request-form" id="serviceRequestForm">
+          <div class="form-group">
+            <label for="serviceType">Service Type</label>
+            <select id="serviceType" name="serviceType" required>
+              <option value="">Select the required service</option>
+              <option value="Restaurant">Restaurant</option>
+              <option value="Nurses">Nurses</option>
+              <option value="Domestic Labor">Domestic Labor</option>
+              <option value="Lab Operation">Lab Operation</option>
+              <option value="Restoration Projects">Restoration Projects</option>
+              <option value="Construction Contracts">Construction Contracts</option>
+              <option value="Maintenance Works">Maintenance Works</option>
+              <option value="Painting and Finishing">Painting and Finishing</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+          </div>
+          
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
+          </div>
+          
+          <div class="form-group">
+            <label for="email">Email (Optional)</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+          </div>
+          
+          <div class="form-group">
+            <label for="details">Request Details</label>
+            <textarea id="details" name="details" required placeholder="Write the details of the required service here..."></textarea>
+          </div>
+          
+          <div class="form-group">
+            <label for="budget">Expected Budget (Optional)</label>
+            <input type="number" id="budget" name="budget" placeholder="Amount in Saudi Riyal">
+          </div>
+          
+          <div class="form-group">
+            <label for="date">Required Service Date (Optional)</label>
+            <input type="date" id="date" name="date">
+          </div>
+          
+          <button type="submit" class="btn btn-accent">Submit Request</button>
+        </form>
+        
+        <div class="price-estimate" id="priceEstimate">
+          <h4>Initial Price Estimate</h4>
+          <div class="estimated-price" id="estimatedPrice">0 SAR</div>
+          <p>This price is estimated and may vary based on service details</p>
+        </div>
       </div>
     </div>
   </section>
+
+
+
 
   <!-- Footer -->
   <footer class="site-footer">
@@ -1554,11 +1404,7 @@ From here, our project began to be one of the logistical pillars of our Kingdom,
     </div>
   </footer>
   
-  <!-- WhatsApp Floating Button -->
-  <a href="https://wa.me/966565678970?text=Hello, I would like to inquire about your services" class="whatsapp-float" target="_blank" id="whatsappButton">
-    <i class="fab fa-whatsapp whatsapp-icon"></i>
-  </a>
-     
+
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>

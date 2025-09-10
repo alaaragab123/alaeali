@@ -1,19 +1,21 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GROUP AL'AEALI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GROUP AL'AEALI - Our Vision</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* الأساسيات */
     :root {
       --primary-color: #20445a;
-      --secondary-color: #2c5877;
-      --accent-color: #f8b500;
+      --secondary-color: #3a7ca5;
+      --accent-color: #f8a31b;
+      --light-color: #f5f5f5;
+      --dark-color: #333;
       --text-color: #fff;
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --transition: all 0.3s ease;
     }
     
     * {
@@ -24,16 +26,26 @@
     }
     
     body {
-      color: #333;
       line-height: 1.6;
-      background-color: #f9f9f9;
+      color: var(--dark-color);
+      background-color: #fff;
       padding-top: 80px; /* تعويض للـ navbar الثابت */
     }
     
     .container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 15px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
     }
     
     /* New Full-width Navbar Styles */
@@ -46,16 +58,15 @@
       z-index: 5000;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
-      height: 80px; /* ارتفاع الـ Navbar */
+      height: 80px; /* Navbar height */
       display: flex;
       align-items: center;
-      direction: ltr;
     }
     
     .site-header.scrolled {
       background-color: rgba(32, 68, 90, 0.95);
       backdrop-filter: blur(10px);
-      height: 70px; /* يصغر عند التمرير */
+      height: 70px; /* Smaller when scrolling */
     }
     
     .header-container {
@@ -81,18 +92,19 @@
     
     .logo img {
       height: 45px;
-      margin-left: 10px;
+      margin-right: 10px; /* Changed from margin-left */
       transition: var(--transition);
     }
     
     .logo span {
       font-weight: 600;
       font-size: 16px;
-      color: var(--text-color);
+      color: #fff;
     }
-            .language-switcher {
-      color: var(--text-color);
-      margin-left: 20px;
+    
+    .language-switcher {
+      color: #fff;
+      margin-right: 20px; /* Changed from margin-left */
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -104,8 +116,9 @@
     }
     
     .language-switcher i {
-      margin-right: 5px;
+      margin-right: 5px; /* Changed from margin-left */
     }
+    
     /* Full-width Navigation */
     .full-nav {
       position: fixed;
@@ -155,7 +168,7 @@
     .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
     
     .nav-links a {
-      color: var(--text-color);
+      color: #fff;
       text-decoration: none;
       font-size: 18px;
       font-weight: 600;
@@ -169,7 +182,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      right: 0;
+      left: 0; /* Changed from right: 0 */
       width: 0;
       height: 3px;
       background: var(--accent-color);
@@ -182,7 +195,7 @@
     
     .nav-links a:hover {
       color: var(--accent-color);
-      transform: translateX(-10px);
+      transform: translateX(10px); /* Changed from -10px */
     }
     
     .nav-links a.active {
@@ -273,7 +286,7 @@
     }
     
     .nav-social a {
-      color: var(--text-color);
+      color: #fff;
       font-size: 24px;
       transition: var(--transition);
     }
@@ -282,166 +295,155 @@
       color: var(--accent-color);
       transform: translateY(-5px);
     }
-    
-    /* فريقنا الإداري */
-    .management-team {
-      padding: 80px 0;
-      background: #fff;
+
+    /* Hero Section */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 100px 0 80px;
     }
     
-    .team-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
+    .page-hero h1 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
     }
     
-    .team-image {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .team-image img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      height: 460px;
-    }
-    
-    .team-description {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .team-description h2 {
-      font-size: 32px;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    
-    .team-description p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    
-    .features-list {
-      list-style: none;
-    }
-    
-    .features-list li {
-      padding: 10px 0;
-      padding-right: 30px;
-      position: relative;
+    .page-hero p {
       font-size: 16px;
-      color: #444;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+      padding-top: 8px;
     }
     
-    .features-list li:before {
-      content: "✓";
-      position: absolute;
-      right: 0;
-      color: var(--accent-color);
-      font-weight: bold;
-    }
-    
-    /* الاستراتيجية */
-    .features {
+    /* Vision Section */
+    .vision-section {
       padding: 80px 0;
-      background: #f9f9f9;
+      background-color: #f9f9f9;
     }
     
-    .features-inner {
+    .vision-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .vision-header h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+   
+    .vision-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
     
-    .feature-box {
-      background: #fff;
-      padding: 30px;
+    .vision-card {
+      background: white;
       border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
     }
     
-    .feature-box:hover {
+    .vision-card:hover {
       transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
     }
     
-    .feature-icon {
-      width: 70px;
-      height: 70px;
+    .vision-icon {
+      width: 80px;
+      height: 80px;
       background: var(--primary-color);
-      color: #fff;
+      color: white;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      font-size: 24px;
+      font-size: 2rem;
     }
     
-    .feature-box h3 {
+    .vision-card h3 {
+      color: var(--primary-color);
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+    
+    .vision-card p {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    
+    /* Values Section */
+    .values-section {
+      padding: 80px 0;
+      background-color: white;
+    }
+    
+    .values-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .values-header h2 {
+      font-size: 1.6rem;
       color: var(--primary-color);
       margin-bottom: 15px;
-      font-size: 20px;
+      position: relative;
+      display: inline-block;
     }
     
-    .feature-box p {
-      color: #666;
-      line-height: 1.6;
-    }
+   
     
-    /* القيم */
-    .section {
-      padding: 80px 0;
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 32px;
-      color: var(--primary-color);
-      margin-bottom: 40px;
-    }
-    
-    .grid {
+    .values-grid {
       display: grid;
-      gap: 30px;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
     }
     
-    .cards-3 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    
-    .card {
-      background: #fff;
-      padding: 30px;
+    .value-item {
+      background: #f9f9f9;
       border-radius: 10px;
+      padding: 25px 20px;
       text-align: center;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       transition: var(--transition);
+      border-top: 4px solid var(--accent-color);
     }
     
-    .card:hover {
+    .value-item:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
     }
     
-    .card h3 {
+    .value-icon {
+      font-size: 2.5rem;
       color: var(--primary-color);
       margin-bottom: 15px;
-      font-size: 22px;
     }
     
-    .card p {
+    .value-item h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .value-item p {
       color: #666;
+      line-height: 1.7;
     }
     
-    /* الفوتر */
+    /* Footer */
     .site-footer {
       background: var(--primary-color);
       color: #fff;
@@ -449,7 +451,7 @@
     }
     
     .footer-top {
-      padding: 60px 0 30px;
+      padding: 50px 0 30px;
     }
     
     .footer-grid {
@@ -468,7 +470,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      right: 0;
+      left: 0; /* Changed from right: 0 */
       width: 50px;
       height: 2px;
       background: var(--accent-color);
@@ -508,12 +510,10 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border-radius: 50%;
       color: #fff;
       transition: all 0.3s;
-      text-decoration: none;
-
     }
     
     .social-links a:hover {
@@ -521,19 +521,13 @@
       color: #333;
     }
     
-    .contact-info {
-      list-style: none;
-    }
-    
     .contact-info li {
       color: #ccc;
       margin-bottom: 15px;
-      display: flex;
-      align-items: center;
     }
     
     .contact-info li i {
-      margin-left: 10px;
+      margin-right: 10px; /* Changed from margin-left */
       color: var(--accent-color);
     }
     
@@ -542,7 +536,7 @@
       padding: 20px 0;
       text-align: center;
     }
-        .full-nav {
+    .full-nav {
   max-height: 100vh;     /* القايمة تاخد أقصى ارتفاع للشاشة */
   overflow-y: auto;      /* يضيف Scroll لو المحتوى أطول من الشاشة */
 }
@@ -558,10 +552,10 @@
 .full-nav::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-    /* التكيف مع الشاشات الصغيرة */
+    /* Responsive Design */
     @media (max-width: 768px) {
       body {
-        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
+        padding-top: 70px; /* Less padding on small screens */
       }
       
       .site-header {
@@ -580,16 +574,17 @@
         font-size: 14px;
       }
       
-      .team-content {
-        flex-direction: column;
+      .page-hero h1 {
+        font-size: 1.6rem;
       }
       
-      .team-description h2 {
-        font-size: 28px;
+      .page-hero p {
+        font-size: 1rem;
       }
       
-      .section-title {
-        font-size: 28px;
+      .vision-grid,
+      .values-grid {
+        grid-template-columns: 1fr;
       }
     }
     
@@ -601,114 +596,145 @@
 </head>
 <body>
 
-<!-- Header -->
-<header class="site-header">
-  <div class="header-container">
-    <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="assets/img/Sep.png" alt="Logo" />
-        <span>GROUP AL'AEALI</span>
-      </a>
-      
-      <div style="display: flex; align-items: center; gap: 10px;">
-        <!-- Menu Toggle Button -->
-        <button class="menu-toggle" id="menuToggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <a href="about_en.html" class="language-switcher" style="font-size: 18px;">
-          <i class="fas fa-globe"></i> EN
-        </a>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Full-width Navigation -->
-  <nav class="full-nav" id="fullNav">
-    <ul class="nav-links">
-      <li><a href="index.html" class="active">الرئيسية</a></li>
-      <li><a href="about.html">من نحن</a></li>
-      <li><a href="vision.html">رؤيتنا</a></li>
-      <li><a href="message.html">الرسالة</a></li>
-      <li><a href="board.html">مجلس الإدارة</a></li>
-      <li><a href="clients.html">عملاؤنا</a></li>
-      <li><a href="company.html">شركاتنا</a></li>
-      <li><a href="contact.html">تواصل معنا</a></li>
-    </ul>
-  </nav>
-</header>
 
-  <!-- فريقنا الإداري -->
-  <section class="management-team">
-    <div class="container">
-      <div class="team-content">
-        <div class="team-image">
-          <img src="assets/img/XriWVIQM.png" alt="فريقنا الإداري" style="max-height: 600px;">
+  <!-- Header -->
+    <header class="site-header">
+        <div class="header-container">
+            <div class="header-inner">
+                <a href="index.html" class="logo">
+                    <img src="assets/img/Sep.png" alt="Logo" />
+                    <span>GROUP AL'AEALI</span>
+                </a>
+                
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <!-- Menu Toggle Button -->
+                    <button class="menu-toggle" id="menuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <a href="vision.html" class="language-switcher" style="font-size: 18px;">
+                        <i class="fas fa-globe"></i> AR
+                    </a>
+                </div>
+            </div>
         </div>
         
-        <div class="team-description">
-          <h2>فريقنا الإداري</h2>
-          <p>يتضمن فريقنا الإداري مجموعة من المتخصصين اللوجستيين و مدراء مشاريع لصيغ و تشكيل آية تخطيط و تنفيذ المشاريع و العقود المبرمة بفضل و أحدث الطرق للوصول إلى أفضل النتائج و استمرارية التطوير الدائم.</p>
-          
-          <ul class="features-list">
-            <li>خبراء لوجستيون بمهارات عالية</li>
-            <li>مديرو مشاريع محترفون</li>
-<li>أحدث طرق التخطيط والتنفيذ</li>
-            <li>التطوير المستمر والتحسين الدائم</li>
-            <li>التزام بتحقيق أفضل النتائج</li>
-            <li>إدارة العقود والمشاريع بكفاءة</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
+        <!-- Full-width Navigation -->
+        <nav class="full-nav" id="fullNav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about_en.html">About Us</a></li>
+                <li><a href="vision_en.html">Our Vision</a></li>
+                <li><a href="message_en.html">Message</a></li>
+                <li><a href="board_en.html">Board of Directors</a></li>
+                <li><a href="clients_en.html">Our Clients</a></li>
+                <li><a href="company_en.html">Our Companies</a></li>
+                <li><a href="contact_en.html">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- الاستراتيجية -->
-  <section class="features">
-    <div class="container features-inner">
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-lightbulb"></i> <!-- إبداع -->
-        </div>
-        <h3>الإبداع</h3>
-        <p>الحصول على بيئة تنافسية ينتج عنها عمل إبداعي متميز.</p>
-      </div>
 
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-users"></i> <!-- فريق -->
-        </div>
-        <h3>الفريق</h3>
-        <p>التركيز على تنوع الخبرات والخلفيات العلمية في فريقنا.</p>
-      </div>
 
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-balance-scale"></i> <!-- تشريعات -->
-        </div>
-        <h3>الأنظمة</h3>
-        <p>التركيز على الأنظمة والتشريعات لتحفيز النمو بوتيرة أسرع.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-bullseye"></i> <!-- أهداف -->
-        </div>
-        <h3>الأهداف</h3>
-        <p>التركيز على أهدافنا وأهداف شركائنا التي تطابقت من حيث الرؤية.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- القيم -->
-  <section class="section">
+<!-- Hero -->
+  <section class="page-hero">
     <div class="container">
-      <h2 class="section-title">قيمنا</h2>
-      <div class="grid cards-3">
-        <div class="card"><h3>الابتكار</h3><p>حلول غير تقليدية.</p></div>
-        <div class="card"><h3>الجودة</h3><p>معايير عالية بالتنفيذ.</p></div>
-        <div class="card"><h3>الشفافية</h3><p>تواصل واضح ومستمر.</p></div>
+      <h1>Our Vision</h1>
+      <p>
+        We always strive for excellence and leadership in all our services and sectors,
+        and we aspire to be the first choice for customers looking for quality and efficiency.
+      </p>
+    </div>
+  </section>
+
+  <!-- Vision Section -->
+  <section class="vision-section">
+    <div class="container">
+      <div class="vision-header">
+        <h2>AL'AEALI Group Vision</h2>
+        <p>We strive for excellence by providing innovative solutions that meet our clients' needs and exceed their expectations</p>
+      </div>
+      
+      <div class="vision-grid">
+        <div class="vision-card">
+          <div class="vision-icon">
+            <i class="fas fa-eye"></i>
+          </div>
+          <h3>Our Vision</h3>
+          <p>
+            To be pioneers in providing integrated solutions and high-quality services that contribute to
+            community development and excellence in the various sectors in which we operate.
+          </p>
+        </div>
+        
+        <div class="vision-card">
+          <div class="vision-icon">
+            <i class="fas fa-chess-knight"></i>
+          </div>
+          <h3>Our Strategy</h3>
+          <p>
+            We rely on a clear strategy based on thoughtful expansion, investment in modern technologies,
+            and developing human resources to ensure the provision of integrated and distinguished services 
+            that meet our clients' needs.
+          </p>
+        </div>
+        
+        <div class="vision-card">
+          <div class="vision-icon">
+            <i class="fas fa-flag"></i>
+          </div>
+          <h3>Our Goals</h3>
+          <p>
+            We seek to achieve sustainable growth and operational excellence through innovation,
+            quality, focus on customer needs, and developing our human resources
+            to ensure we always provide the best solutions.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Values Section -->
+  <section class="values-section">
+    <div class="container">
+      <div class="values-header">
+        <h2>Our Core Values</h2>
+        <p>Values we adhere to and follow in everything we do</p>
+      </div>
+      
+      <div class="values-grid">
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-star"></i>
+          </div>
+          <h3>Quality</h3>
+          <p>We adhere to the highest quality standards in all our services and products to ensure customer satisfaction.</p>
+        </div>
+        
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3>Innovation</h3>
+          <p>We always strive to develop innovative solutions that meet the changing market needs.</p>
+        </div>
+
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>Teamwork</h3>
+          <p>We believe in the power of teamwork and strive to build integrated and creative teams.</p>
+        </div>
+        
+        <div class="value-item">
+          <div class="value-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>Continuous Development</h3>
+          <p>We believe in the importance of continuous development to keep up with the requirements of the times.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -720,12 +746,12 @@
         
         <div class="footer-col about">
           <a href="index.html" class="footer-logo">
-              <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
+               <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
           <span style="color: #fff;">GROUP AL'AEALI</span>
           </a>
-          <p style="height: 5px;"></p>
+            <p style="height: 5px;"></p>
           <p>
-            نقدم لكم أفضل خدماتنا بأعلى معايير الجودة والتميز في مختلف المجالات.
+            We provide you with our best services with the highest standards of quality and excellence in various fields.
           </p>
           <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -736,29 +762,29 @@
         </div>
 
         <div class="footer-col">
-          <h4>روابط سريعة</h4>
+          <h4>Quick Links</h4>
           <ul>
-            <li><a href="about.html">من نحن</a></li>
-            <li><a href="services.html">الخدمات</a></li>
-            <li><a href="company.html">شركاتنا</a></li>
-            <li><a href="contact.html">تواصل معنا</a></li>
+               <li><a href="about_en.html">About Us</a></li>
+            <li><a href="service_en.html">Services</a></li>
+            <li><a href="company_en.html">Our Companies</a></li>
+            <li><a href="contact_en.html">Contact Us</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>خدماتنا</h4>
+          <h4>Our Services</h4>
           <ul>
-            <li><a href="#">عمالة منزلية</a></li>
-            <li><a href="#">تشغيل معامل ومشاريع</a></li>
-            <li><a href="#">ترميم أبنية خاصة وحكومية</a></li>
-            <li><a href="#">أعمال صيانة المباني</a></li>
+            <li><a href="#">Domestic Workers</a></li>
+            <li><a href="#">Factories and Projects Operation</a></li>
+            <li><a href="#">Private and Government Building Restoration</a></li>
+            <li><a href="#">Building Maintenance Works</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>تواصل معنا</h4>
+          <h4>Contact Us</h4>
           <ul class="contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> الرياض، السعودية</li>
+            <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
             <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
             <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
           </ul>
@@ -768,20 +794,15 @@
 
     <div class="footer-bottom">
       <div class="container">
-        <p>© <span id="year">2023</span> شركة الأعالي. جميع الحقوق محفوظة.</p>
+        <p>© <span id="year">2023</span> AL'AEALI Company. All rights reserved.</p>
       </div>
     </div>
   </footer>
      
-       
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // تهيئة AOS
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
     
     // Full-width Navigation
     const menuToggle = document.getElementById('menuToggle');
@@ -794,7 +815,7 @@
       body.classList.toggle('no-scroll');
     });
     
-    // إغلاق القائمة عند النقر على رابط
+    // Close menu when clicking on a link
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -804,7 +825,7 @@
       });
     });
     
-    // تأثير التمرير على الـ Header
+    // Scroll effect on Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.site-header');
       if (window.scrollY > 50) {
@@ -813,9 +834,6 @@
         header.classList.remove('scrolled');
       }
     });
-    
-    // إضافة السنة الحالية للفوتر
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

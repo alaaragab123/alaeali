@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>GROUP AL'AEALI</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;800&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GROUP AL'AEALI - Board of Directors</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
+    /* الأساسيات */
     :root {
       --primary-color: #20445a;
-      --secondary-color: #2c5877;
-      --accent-color: #f8b500;
+      --secondary-color: #3a7ca5;
+      --accent-color: #f8a31b;
+      --light-color: #f5f5f5;
+      --dark-color: #333;
       --text-color: #fff;
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      --transition: all 0.3s ease;
     }
     
     * {
@@ -24,17 +26,26 @@
     }
     
     body {
-      color: #333;
       line-height: 1.6;
-      background-color: #f9f9f9;
-      padding-top: 80px; /* Compensation for fixed navbar */
-      direction: ltr; /* LTR direction */
+      color: var(--dark-color);
+      background-color: #fff;
+      padding-top: 80px; /* تعويض للـ navbar الثابت */
     }
     
     .container {
+      width: 100%;
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 15px;
+    }
+    
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    
+    ul {
+      list-style: none;
     }
     
     /* New Full-width Navbar Styles */
@@ -47,17 +58,15 @@
       z-index: 5000;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
-      height: 80px; /* Navbar height */
+      height: 80px; /* ارتفاع الـ Navbar */
       display: flex;
       align-items: center;
-      direction: ltr; /* LTR direction */
-
     }
     
     .site-header.scrolled {
       background-color: rgba(32, 68, 90, 0.95);
       backdrop-filter: blur(10px);
-      height: 70px; /* Shrinks when scrolling */
+      height: 70px; /* يصغر عند التمرير */
     }
     
     .header-container {
@@ -83,18 +92,19 @@
     
     .logo img {
       height: 45px;
-      margin-right: 10px; /* Changed from margin-left for LTR */
+      margin-right: 10px;
       transition: var(--transition);
     }
     
     .logo span {
       font-weight: 600;
       font-size: 16px;
-      color: var(--text-color);
+      color: #fff;
     }
-        .language-switcher {
-      color: var(--text-color);
-      margin-left: 20px;
+    
+    .language-switcher {
+      color: #fff;
+      margin-right: 20px;
       text-decoration: none;
       display: flex;
       align-items: center;
@@ -158,7 +168,7 @@
     .full-nav.active .nav-links li:nth-child(5) { transition-delay: 0.5s; }
     
     .nav-links a {
-      color: var(--text-color);
+      color: #fff;
       text-decoration: none;
       font-size: 18px;
       font-weight: 600;
@@ -172,7 +182,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0; /* Changed from right: 0 for LTR */
+      left: 0;
       width: 0;
       height: 3px;
       background: var(--accent-color);
@@ -185,7 +195,7 @@
     
     .nav-links a:hover {
       color: var(--accent-color);
-      transform: translateX(10px); /* Changed from -10px for LTR */
+      transform: translateX(10px);
     }
     
     .nav-links a.active {
@@ -216,7 +226,7 @@
   cursor: pointer;
 }
 
-   .menu-toggle span {
+    .menu-toggle span {
   position: absolute;
   top: 0;
   left: 0;
@@ -275,7 +285,7 @@
     }
     
     .nav-social a {
-      color: var(--text-color);
+      color: #fff;
       font-size: 24px;
       transition: var(--transition);
     }
@@ -284,166 +294,233 @@
       color: var(--accent-color);
       transform: translateY(-5px);
     }
-    
-    /* Our Management Team */
-    .management-team {
-      padding: 80px 0;
-      background: #fff;
+
+    /* قسم البطل */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: white;
+      text-align: center;
+      padding: 100px 0 80px;
     }
     
-    .team-content {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 40px;
-      align-items: center;
+    .page-hero h1 {
+      font-size: 1.6rem;
+      margin-bottom: 15px;
     }
     
-    .team-image {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .team-image img {
-      width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      height: 460px;
-    }
-    
-    .team-description {
-      flex: 1;
-      min-width: 300px;
-    }
-    
-    .team-description h2 {
-      font-size: 32px;
-      color: var(--primary-color);
-      margin-bottom: 20px;
-    }
-    
-    .team-description p {
-      font-size: 18px;
-      line-height: 1.8;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    
-    .features-list {
-      list-style: none;
-    }
-    
-    .features-list li {
-      padding: 10px 0;
-      padding-left: 30px; /* Changed from padding-right for LTR */
-      position: relative;
+    .page-hero p {
       font-size: 16px;
-      color: #444;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+      padding-top: 8px;
     }
     
-    .features-list li:before {
-      content: "✓";
-      position: absolute;
-      left: 0; /* Changed from right: 0 for LTR */
-      color: var(--accent-color);
-      font-weight: bold;
-    }
-    
-    /* Strategy */
-    .features {
+    /* قسم مجلس الإدارة */
+    .board-section {
       padding: 80px 0;
-      background: #f9f9f9;
+      background-color: #f9f9f9;
     }
     
-    .features-inner {
+    .board-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .board-header h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .board-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
       gap: 30px;
     }
     
-    .feature-box {
-      background: #fff;
-      padding: 30px;
+    .board-card {
+      background: white;
       border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
       text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+      position: relative;
+    }
+    
+    .board-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .board-img {
+      width: 100%;
+      height: 250px;
+      background-color: #eee;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .board-img img {
+      width: 100%;
+      height: 100%;
+      object-fit:fill;
       transition: var(--transition);
     }
     
-    .feature-box:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    .board-card:hover .board-img img {
+      transform: scale(1.05);
     }
     
-    .feature-icon {
-      width: 70px;
-      height: 70px;
-      background: var(--primary-color);
-      color: #fff;
+    .board-info {
+      padding: 25px 20px;
+    }
+    
+    .board-info h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+    
+    .board-info .position {
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 15px;
+      display: block;
+    }
+    
+    .board-info p {
+      color: #666;
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    
+    .board-social {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .board-social a {
+      width: 40px;
+      height: 40px;
+      background: #f5f5f5;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 24px;
-    }
-    
-    .feature-box h3 {
       color: var(--primary-color);
-      margin-bottom: 15px;
-      font-size: 20px;
-    }
-    
-    .feature-box p {
-      color: #666;
-      line-height: 1.6;
-    }
-    
-    /* Values */
-    .section {
-      padding: 80px 0;
-    }
-    
-    .section-title {
-      text-align: center;
-      font-size: 32px;
-      color: var(--primary-color);
-      margin-bottom: 40px;
-    }
-    
-    .grid {
-      display: grid;
-      gap: 30px;
-    }
-    
-    .cards-3 {
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    }
-    
-    .card {
-      background: #fff;
-      padding: 30px;
-      border-radius: 10px;
-      text-align: center;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
       transition: var(--transition);
     }
     
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    .board-social a:hover {
+      background: var(--primary-color);
+      color: white;
     }
     
-    .card h3 {
+    /* قسم الهيكل التنظيمي */
+    .structure-section {
+      padding: 80px 0;
+      background-color: white;
+    }
+    
+    .structure-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .structure-header h2 {
+      font-size: 1.6rem;
       color: var(--primary-color);
       margin-bottom: 15px;
-      font-size: 22px;
+      position: relative;
+      display: inline-block;
     }
     
-    .card p {
-      color: #666;
+    .org-chart {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     }
     
-    /* Footer */
+    .org-level {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+    }
+    
+    .org-item {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      width: 200px;
+      margin: 0 15px;
+      position: relative;
+    }
+    
+    .org-item:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 20px;
+      background: var(--secondary-color);
+    }
+    
+    .org-item h4 {
+      color: var(--primary-color);
+      margin-bottom: 8px;
+    }
+    
+    .org-item p {
+      color: var(--accent-color);
+      font-size: 0.9rem;
+    }
+    
+    .org-connectors {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    
+    .org-connector {
+      width: 40%;
+      height: 2px;
+      background: var(--secondary-color);
+      position: relative;
+    }
+    
+    .org-connector::before,
+    .org-connector::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 20px;
+      background: var(--secondary-color);
+      top: -20px;
+    }
+    
+    .org-connector::before {
+      left: 0;
+    }
+    
+    .org-connector::after {
+      right: 0;
+    }
+    
+    /* الفوتر */
     .site-footer {
       background: var(--primary-color);
       color: #fff;
@@ -451,7 +528,7 @@
     }
     
     .footer-top {
-      padding: 60px 0 30px;
+      padding: 50px 0 30px;
     }
     
     .footer-grid {
@@ -470,7 +547,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0; /* Changed from right: 0 for LTR */
+      left: 0;
       width: 50px;
       height: 2px;
       background: var(--accent-color);
@@ -510,11 +587,10 @@
       justify-content: center;
       width: 40px;
       height: 40px;
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(255,255,255,0.1);
       border-radius: 50%;
       color: #fff;
       transition: all 0.3s;
-      text-decoration: none;
     }
     
     .social-links a:hover {
@@ -522,19 +598,13 @@
       color: #333;
     }
     
-    .contact-info {
-      list-style: none;
-    }
-    
     .contact-info li {
       color: #ccc;
       margin-bottom: 15px;
-      display: flex;
-      align-items: center;
     }
     
     .contact-info li i {
-      margin-right: 10px; /* Changed from margin-left for LTR */
+      margin-right: 10px;
       color: var(--accent-color);
     }
     
@@ -559,10 +629,10 @@
 .full-nav::-webkit-scrollbar-thumb:hover {
   background: #555;
 }
-    /* Responsive Design */
+    /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 768px) {
       body {
-        padding-top: 70px; /* Reduced padding for small screens */
+        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
       }
       
       .site-header {
@@ -581,16 +651,33 @@
         font-size: 14px;
       }
       
-      .team-content {
+      .page-hero h1 {
+        font-size: 1.6rem;
+      }
+      
+      .page-hero p {
+        font-size: 1rem;
+      }
+      
+      .board-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .org-level {
         flex-direction: column;
+        align-items: center;
       }
       
-      .team-description h2 {
-        font-size: 28px;
+      .org-item {
+        margin-bottom: 30px;
       }
       
-      .section-title {
-        font-size: 28px;
+      .org-item:not(:last-child)::after {
+        display: none;
+      }
+      
+      .org-connectors {
+        display: none;
       }
     }
     
@@ -598,22 +685,10 @@
     .no-scroll {
       overflow: hidden;
     }
-    
-    /* Language Icon */
-    .language-icon {
-      color: var(--text-color);
-      font-size: 20px;
-      margin-left: 15px;
-      transition: var(--transition);
-      text-decoration: none;
-    }
-    
-    .language-icon:hover {
-      color: var(--accent-color);
-    }
   </style>
 </head>
 <body>
+
 
   <!-- Header -->
     <header class="site-header">
@@ -631,7 +706,7 @@
                         <span></span>
                         <span></span>
                     </button>
-                    <a href="about.html" class="language-switcher" style="font-size: 18px;">
+                    <a href="board.html" class="language-switcher" style="font-size: 18px;">
                         <i class="fas fa-globe"></i> AR
                     </a>
                 </div>
@@ -653,76 +728,175 @@
         </nav>
     </header>
 
-  <!-- Our Management Team -->
-  <section class="management-team">
+
+<!-- Hero -->
+  <section class="page-hero">
     <div class="container">
-      <div class="team-content">
-        <div class="team-image">
-          <img src="assets/img/XriWVIQM.png" alt="Our Management Team" style="max-height: 600px;">
+      <h1>Board of Directors</h1>
+      <p>
+        Our board of directors includes a selection of experts and specialists in various fields,
+        who guide the group's strategy towards achieving its goals and mission.
+      </p>
+    </div>
+  </section>
+
+  <!-- Board Section -->
+  <section class="board-section">
+    <div class="container">
+      <div class="board-header">
+        <h2>Board Members</h2>
+        <p>The board of directors of Al'aeali Group includes distinguished leaders who contribute to directing the group's path towards excellence and leadership</p>
+      </div>
+      
+      <div class="board-grid">
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/lucas.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Salem Al'aeali</h3>
+            <span class="position">Chairman of the Board</span>
+            <p>Has more than 20 years of experience in business management and investment, and has led many successful projects in both public and private sectors.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
         </div>
         
-        <div class="team-description">
-          <h2>Our Management Team</h2>
-          <p>Our management team includes a group of logistics specialists and project managers to formulate and shape any planning and implementation of projects and contracts, thanks to the latest methods to achieve the best results and continuous permanent development.</p>
-          
-          <ul class="features-list">
-            <li>Highly skilled logistics experts</li>
-            <li>Professional project managers</li>
-            <li>Latest planning and implementation methods</li>
-            <li>Continuous development and permanent improvement</li>
-            <li>Commitment to achieving the best results</li>
-            <li>Efficient management of contracts and projects</li>
-          </ul>
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/mostafa.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Mohammed Ahmed</h3>
+            <span class="position">Vice Chairman</span>
+            <p>Expert in strategic planning and human resource management, contributed to the development of many leading institutions and companies in the market.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/paulo.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Khalid Hassan</h3>
+            <span class="position">Board Member</span>
+            <p>Specialized in financial and investment affairs, with extensive experience in managing investment portfolios and developing financial strategies.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/mostafa.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Khalid Al-Harbi</h3>
+            <span class="position">Board Member</span>
+            <p>Expert in technology and digital transformation, led many technical transformation projects in government and private institutions.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/paulo.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Ahmed Al-Sayed</h3>
+            <span class="position">Board Member</span>
+            <p>Specialized in marketing and corporate communication, contributed to building and developing many leading brands in the market.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="board-card">
+          <div class="board-img">
+            <img src="assets/img/lucas.jpg" alt="Board Member">
+          </div>
+          <div class="board-info">
+            <h3>Ali Al-Shammari</h3>
+            <span class="position">Board Member</span>
+            <p>Expert in operations and project management, with extensive experience in managing operational processes for major projects.</p>
+            <div class="board-social">
+              <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="far fa-envelope"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- Strategy -->
-  <section class="features">
-    <div class="container features-inner">
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-lightbulb"></i> <!-- Creativity -->
-        </div>
-        <h3>Creativity</h3>
-        <p>Obtaining a competitive environment that results in distinguished creative work.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-users"></i> <!-- Team -->
-        </div>
-        <h3>Team</h3>
-        <p>Focus on the diversity of experiences and educational backgrounds in our team.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-balance-scale"></i> <!-- Legislation -->
-        </div>
-        <h3>Systems</h3>
-        <p>Focus on systems and legislation to stimulate growth at a faster pace.</p>
-      </div>
-
-      <div class="feature-box">
-        <div class="feature-icon">
-          <i class="fas fa-bullseye"></i> <!-- Goals -->
-        </div>
-        <h3>Goals</h3>
-        <p>Focus on our goals and our partners' goals that matched in terms of vision.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Values -->
-  <section class="section">
+  
+  <!-- Structure Section -->
+  <section class="structure-section">
     <div class="container">
-      <h2 class="section-title">Our Values</h2>
-      <div class="grid cards-3">
-        <div class="card"><h3>Innovation</h3><p>Unconventional solutions.</p></div>
-        <div class="card"><h3>Quality</h3><p>High implementation standards.</p></div>
-        <div class="card"><h3>Transparency</h3><p>Clear and continuous communication.</p></div>
+      <div class="structure-header">
+        <h2>Organizational Structure</h2>
+        <p>A clear organizational structure that ensures work efficiency and achievement of the group's strategic goals</p>
+      </div>
+      
+      <div class="org-chart">
+        <div class="org-level">
+          <div class="org-item">
+            <h4>Chairman of the Board</h4>
+            <p>Salem Al'aeali</p>
+          </div>
+        </div>
+        
+        <div class="org-connectors">
+          <div class="org-connector"></div>
+        </div>
+        
+        <div class="org-level">
+          <div class="org-item">
+            <h4>Vice Chairman</h4>
+            <p>Mohammed Ahmed</p>
+          </div>
+        </div>
+        
+        <div class="org-connectors">
+          <div class="org-connector"></div>
+        </div>
+        
+        <div class="org-level">
+          <div class="org-item">
+            <h4>Member</h4>
+            <p>Khalid Hassan</p>
+          </div>
+          <div class="org-item">
+            <h4>Member</h4>
+            <p>Khalid Al-Harbi</p>
+          </div>
+          <div class="org-item">
+            <h4>Member</h4>
+            <p>Ahmed Al-Sayed</p>
+          </div>
+          <div class="org-item">
+            <h4>Member</h4>
+            <p>Ali Al-Shammari</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -734,10 +908,10 @@
         
         <div class="footer-col about">
           <a href="index.html" class="footer-logo">
-             <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
+               <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
           <span style="color: #fff;">GROUP AL'AEALI</span>
           </a>
-          <p style="height: 5px;"></p>
+            <p style="height: 5px;"></p>
           <p>
             We provide you with our best services with the highest standards of quality and excellence in various fields.
           </p>
@@ -764,7 +938,7 @@
           <ul>
             <li><a href="#">Domestic Workers</a></li>
             <li><a href="#">Operation of Factories and Projects</a></li>
-            <li><a href="#">Renovation of Private and Government Buildings</a></li>
+            <li><a href="#">Restoration of Private and Government Buildings</a></li>
             <li><a href="#">Building Maintenance Works</a></li>
           </ul>
         </div>
@@ -782,20 +956,15 @@
 
     <div class="footer-bottom">
       <div class="container">
-        <p>© <span id="year">2023</span> Al'Aeali Company. All rights reserved.</p>
+        <p>© <span id="year">2023</span> Al'aeali Company. All rights reserved.</p>
       </div>
     </div>
   </footer>
      
-       
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 1000,
-      once: true,
-    });
+    // سنة الفوتر
+    document.getElementById('year').textContent = new Date().getFullYear();
     
     // Full-width Navigation
     const menuToggle = document.getElementById('menuToggle');
@@ -808,7 +977,7 @@
       body.classList.toggle('no-scroll');
     });
     
-    // Close menu when clicking on a link
+    // إغلاق القائمة عند النقر على رابط
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -818,7 +987,7 @@
       });
     });
     
-    // Scroll effect on Header
+    // تأثير التمرير على الـ Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.site-header');
       if (window.scrollY > 50) {
@@ -827,9 +996,6 @@
         header.classList.remove('scrolled');
       }
     });
-    
-    // Add current year to footer
-    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>

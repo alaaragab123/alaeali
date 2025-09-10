@@ -68,6 +68,7 @@
       z-index: 5000;
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
       transition: var(--transition);
+      direction: ltr;
     }
     
     .site-header.scrolled {
@@ -122,7 +123,7 @@
     }
     
     .language-switcher i {
-      margin-left: 5px;
+      margin-right: 5px;
     }
     /* Full-width Navigation */
     .full-nav {
@@ -225,37 +226,54 @@
       border: none;
     }
     
-    .menu-toggle span {
-      position: absolute;
-      width: 30px;
-      height: 3px;
-      background: var(--text-color);
-      border-radius: 3px;
-      transition: var(--transition);
-    }
-    
-    .menu-toggle span:nth-child(1) {
-      transform: translateY(-10px);
-    }
-    
-    .menu-toggle span:nth-child(3) {
-      transform: translateY(10px);
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
-      background: var(--accent-color);
-    }
-    
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
-      background: var(--accent-color);
-    }
-    
+   .menu-toggle {
+  position: relative;
+  width: 30px;
+  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
+  cursor: pointer;
+}
+
+.menu-toggle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* أول خط */
+.menu-toggle span:nth-child(1) {
+  transform: translateY(0);
+}
+
+/* تاني خط */
+.menu-toggle span:nth-child(2) {
+  transform: translateY(8px);
+}
+
+/* تالت خط */
+.menu-toggle span:nth-child(3) {
+  transform: translateY(16px);
+}
+
+/* عند التفعيل */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--accent-color);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(8px) rotate(-45deg);
+  background: var(--accent-color);
+}
+
     /* Social Icons in Nav */
     .nav-social {
       position: absolute;
@@ -287,7 +305,7 @@
     /* Hero Slider */
     .hero {
       position: relative;
-      height: 95vh;
+      height: 65vh;
       overflow: hidden;
     }
     
@@ -312,13 +330,13 @@
     }
     
     .hero-content h1 {
-      font-size: 3.5rem;
+      font-size: 1.6rem;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
     
     .hero-content p {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       margin-bottom: 30px;
       text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     }
@@ -376,7 +394,7 @@
     }
     
     .vision-text h2 {
-      font-size: 28px;
+      font-size: 26px;
       color: #20445a;
       margin-bottom: 20px;
     }
@@ -406,7 +424,7 @@
     }
     
     .section-title {
-      font-size: 28px;
+      font-size: 26px;
       color: #20445a;
       margin-bottom: 40px;
       text-align: center;
@@ -437,13 +455,13 @@
     }
     
     .card img {
-      max-width: 80px;
+      max-width: 60px;
       height: auto;
       margin-bottom: 20px;
     }
     
     .card h3 {
-      font-size: 22px;
+      font-size: 20px;
       color: #20445a;
       margin-bottom: 15px;
     }
@@ -476,6 +494,218 @@
       background: var(--secondary-color);
       transform: translateY(-3px);
     }
+     /* قسم الخدمات */
+    .services-section {
+      padding: 80px 0;
+      background-color: #f9f9f9;
+    }
+    
+    .services-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .services-header h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+    .services-header h2:after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      right: 50%;
+      transform: translateX(50%);
+      width: 80px;
+      height: 3px;
+      background: var(--accent-color);
+    }
+    
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+    
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .service-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+    
+    .service-card h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .service-card p {
+      color: #666;
+      margin-bottom: 20px;
+    }
+    
+    .service-price {
+      background: var(--accent-color);
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      font-weight: bold;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+    
+    .service-features {
+      text-align: right;
+      margin-top: 20px;
+    }
+    
+    .service-features li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      position: relative;
+      padding-right: 25px;
+      list-style-type: none;
+    }
+    
+    .service-features li:before {
+      content: "•";
+      color: var(--accent-color);
+      font-weight: bold;
+      position: absolute;
+      right: 0;
+      font-size: 1.5rem;
+    }
+    
+    /* قسم طلب الخدمة */
+    .service-request {
+      background: white;
+      padding: 60px 0;
+    }
+    
+    .request-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #f9f9f9;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .request-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .request-header h2 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .request-form {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    
+    .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-family: 'Cairo', sans-serif;
+      font-size: 1rem;
+    }
+    
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    
+    .btn {
+      display: inline-block;
+      background: var(--primary-color);
+      color: white;
+      padding: 8px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+    
+    .btn:hover {
+      background: var(--secondary-color);
+    }
+    
+    .btn-accent {
+      background: var(--accent-color);
+    }
+    
+    .btn-accent:hover {
+      background: #e5940e;
+    }
+    
+    .price-estimate {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      border-left: 4px solid var(--accent-color);
+      display: none;
+    }
+    
+    .price-estimate h4 {
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .estimated-price {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--accent-color);
+    }
+    
 
     /* Clients Section */
     .clients-section {
@@ -600,7 +830,131 @@
       padding: 20px 0;
       text-align: center;
     }
+    .full-nav {
+  max-height: 100vh;     /* القايمة تاخد أقصى ارتفاع للشاشة */
+  overflow-y: auto;      /* يضيف Scroll لو المحتوى أطول من الشاشة */
+}
+.full-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.full-nav::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.full-nav::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      color: #FFF;
+      border-radius: 50%;
+      text-align: center;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(100px);
+    }
     
+    .whatsapp-float.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .whatsapp-float:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+    }
+    
+    .whatsapp-icon {
+      font-size: 30px;
+    }
+
+    /* Achievements Section */
+    .achievements-section {
+      padding: 80px 0;
+      background: #f5f5f5;
+    }
+    
+    .achievements-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    .achievements-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    
+    .achievements-header h2 {
+      font-size: 1.6rem;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+    
+   
+    
+    .achievements-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+    }
+    
+    .achievement-card {
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      transition: var(--transition);
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+    }
+    
+    .achievement-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+    
+    .achievement-icon {
+      width: 80px;
+      height: 80px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2rem;
+    }
+    
+    .achievement-card h3 {
+      color: var(--primary-color);
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+    
+    .achievement-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
     /* Responsive Styles */
     @media (max-width: 768px) {
       .hero-content h1 {
@@ -626,6 +980,17 @@
       .vision-inner {
         flex-direction: column;
       }
+      
+      .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 15px;
+        left: 15px;
+      }
+      
+      .whatsapp-icon {
+        font-size: 24px;
+      }
     }
     
     @media (max-width: 480px) {
@@ -640,8 +1005,62 @@
       .card {
         padding: 20px 15px;
       }
+      
+      .whatsapp-float {
+        width: 45px;
+        height: 45px;
+        bottom: 10px;
+        left: 10px;
+      }
+      
+      .whatsapp-icon {
+        font-size: 22px;
+      }
     }
 
+    /* Utility Classes */
+    .no-scroll {
+      overflow: hidden;
+    }
+       /* التكيف مع الشاشات الصغيرة */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 70px; /* تقليل المسافة في الشاشات الصغيرة */
+      }
+      
+      .site-header {
+        height: 70px;
+      }
+      
+      .nav-links a {
+        font-size: 24px;
+      }
+      
+      .logo img {
+        height: 35px;
+      }
+      
+      .logo span {
+        font-size: 14px;
+      }
+      
+      .page-hero h1 {
+        font-size: 1.8rem;
+      }
+      
+      .page-hero p {
+        font-size: 1rem;
+      }
+      
+      .request-container {
+        padding: 20px;
+      }
+      
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
     /* Utility Classes */
     .no-scroll {
       overflow: hidden;
@@ -655,46 +1074,47 @@
     <img src="assets/img/splach.png" alt="Logo">
   </div>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-          <img src="assets/img/Sep.png" alt="Logo" />
-          <span>GROUP AL'AEALI</span>
+<!-- Header -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/Sep.png" alt="Logo" />
+        <span>GROUP AL'AEALI</span>
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- Menu Toggle Button -->
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a href="home_en.html" class="language-switcher" style="font-size: 18px;">
+          <i class="fas fa-globe"></i> EN
         </a>
-        
-         <div style="display: flex; align-items: center; gap: 10px;">
- 
-
-  <!-- Menu Toggle Button -->
-  <button class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-   <a href="home_en.html" class="language-switcher" style="font-size: 18px;">
-    <i class="fas fa-globe"></i> EN
-  </a>
-</div>
       </div>
     </div>
-    
-    <!-- Full-width Navigation -->
-    <nav class="full-nav" id="fullNav">
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">الرئيسية</a></li>
-        <li><a href="about.html">من نحن</a></li>
-        <li><a href="services.html">الخدمات</a></li>
-        <li><a href="portfolio.html">شركاتنا</a></li>
-        <li><a href="contact.html">تواصل معنا</a></li>
-      </ul>
-     
-    </nav>
-  </header>
+  </div>
+  
+  <!-- Full-width Navigation -->
+  <nav class="full-nav" id="fullNav">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="vision.html">رؤيتنا</a></li>
+      <li><a href="message.html">الرسالة</a></li>
+      <li><a href="board.html">مجلس الإدارة</a></li>
+      <li><a href="clients.html">عملاؤنا</a></li>
+      <li><a href="company.html">شركاتنا</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </nav>
+</header>
+
 
   <!-- Hero Slider -->
-  <section class="hero">
+  <section class="hero" onclick="window.location.href='services.html'" style="cursor: pointer;">
     <div class="swiper hero-swiper">
       <div class="swiper-wrapper">
         <div class="swiper-slide hero-slide" style="--bg:url('assets/img/etienne.jpg')">
@@ -729,8 +1149,6 @@
         </div>
       </div>
       <div class="swiper-pagination"></div>
-      <div class="swiper-button-prev"></div>
-      <div class="swiper-button-next"></div>
     </div>
   </section>
 
@@ -738,22 +1156,14 @@
   <section class="vision-section" data-aos="fade-up">
     <div class="container vision-inner">
       <div class="vision-text" data-aos="zoom-in" data-aos-duration="1200">
-        <h2>رؤيتنا</h2>
-        <p style="line-height: 2">منذ إطالق رؤية المملكة العربية السعودية ,2030 تم
-التركيز فيها على بناء, و سن و تحسين الأنظمة و
-التشريعات, و تنفيذ الإصالحات االقتصادية و االجتماعية,
-و ذلك عبر مجموعة كبيرة من المبادرات التي أحدثت
-قفزات هائلة و إنجازات غير مسبوقة في الطريق نحو
-تحقيق اقتصاد مزدهر.
-و من هنا بدء مشروعنا لنكون أحد الدعامات اللوجستية
-لمملكتنا و قمنا بتشكيل الفريق صاحب الخبرات و
-القدرات و الرؤية الهادفة ليكون لنا الأثر العميق و
-المساعدة على تحقيق الأهداف و تسريع وتيرة الإنتاج
-و رفع مستوى المنافسة في كافة القطاعات
+        <h2>اخبارنا</h2>
+        <p style="line-height: 2">منذ إطلاق رؤية المملكة العربية السعودية 2030، كان التركيز على بناء الأنظمة وسنّ التشريعات وتحسينها، إلى جانب تنفيذ الإصلاحات الاقتصادية والاجتماعية. وقد تحقق ذلك من خلال مجموعة كبيرة من المبادرات التي أحدثت قفزات هائلة وإنجازات غير مسبوقة في مسيرة تحقيق اقتصاد مزدهر ومستدام.
+
+ومن هنا انطلق مشروعنا لنكون أحد الركائز الداعمة لوطننا، عبر تقديم خدماتنا في مجال الصيانة والتشغيل. فقد قمنا بتشكيل فريق يمتلك الخبرات والقدرات والرؤية الواضحة، ليكون لنا الأثر الإيجابي العميق في دعم تحقيق الأهداف، وتسريع وتيرة الإنتاج، ورفع مستوى الكفاءة والمنافسة في مختلف القطاعات
         </p>
       </div>
       <div class="vision-img" data-aos="zoom-in" data-aos-duration="1200">
-        <img src="assets/img/LC76PEMMlV.jpg" alt="رؤيتنا">
+        <img src="assets/img/JbqRqt6jx.jpg" alt="رؤيتنا">
       </div>
     </div>
   </section>
@@ -762,7 +1172,7 @@
 <!-- Services Teaser -->
 <section class="section" data-aos="fade-up">
   <div class="container">
-    <h2 class="section-title">ماذا نقدم؟</h2>
+    <h2 class="section-title">لماذا نحن</h2>
 
     <div class="grid cards-3">
       <!-- عقود إنشاءات -->
@@ -810,16 +1220,239 @@
       </div>
     </div>
 
-    <div class="center mt-24">
-      <a class="btn" href="services.html">كل الخدمات</a>
-    </div>
+    
   </div>
 </section>
+
+
+  <section class="services-section">
+    <div class="container">
+      <div class="services-header">
+        <h2>خدماتنا</h2>
+        <p>نقدم مجموعة متكاملة من الخدمات لتلبية جميع احتياجاتكم</p>
+      </div>
+      
+      <div class="services-grid">
+        <!-- مطعم -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-utensils"></i>
+          </div>
+          <h3>مطعم</h3>
+          <p>تقديم وجبات متنوعة بجودة عالية.</p>
+          <ul class="service-features">
+            <li>خدمة طاولة كاملة</li>
+            <li>تجهيز حفلات خاصة</li>
+            <li>توصيل طلبات للمنازل</li>
+            <li>أطعمة متنوعة حسب الطلب</li>
+          </ul>
+          <p style="height: 7px;""></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- ممرضات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-user-nurse"></i>
+          </div>
+          <h3>ممرضات</h3>
+          <p>خدمات تمريضية ورعاية صحية منزلية.</p>
+          <ul class="service-features">
+            <li>رعاية مسنين</li>
+            <li>رعاية مرضى مزمنين</li>
+            <li>خدمات تمريض منزلية</li>
+            <li>رعاية ما بعد العمليات</li>
+          </ul>
+         <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- عمالة منزلية -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-home"></i>
+          </div>
+          <h3>عمالة منزلية</h3>
+          <p>توفير كوادر مؤهلة للأعمال المنزلية.</p>
+          <ul class="service-features">
+            <li>خدمات تنظيف</li>
+            <li>طبخ وإعداد وجبات</li>
+            <li>رعاية أطفال</li>
+            <li>غسيل وكي الملابس</li>
+          </ul>
+                   <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- تشغيل معامل -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-flask"></i>
+          </div>
+          <h3>تشغيل معامل</h3>
+          <p>تشغيل وصيانة المعامل بأحدث التقنيات.</p>
+          <ul class="service-features">
+            <li>تشغيل معامل طبية</li>
+            <li>معامل أبحاث علمية</li>
+            <li>صيانة دورية للمعدات</li>
+            <li>تدريب الكوادر</li>
+          </ul>
+          <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- مشاريع ترميم -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-university"></i>
+          </div>
+          <h3>مشاريع ترميم</h3>
+          <p>ترميم المباني الخاصة والحكومية باحترافية.</p>
+          <ul class="service-features">
+            <li>ترميم واجهات المباني</li>
+            <li>ترميم داخلي شامل</li>
+            <li>ترميم تراثي وأثري</li>
+            <li>ترميم منشآت حكومية</li>
+          </ul>
+           <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- عقود إنشاءات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-file-contract"></i>
+          </div>
+          <h3>عقود إنشاءات</h3>
+          <p>تنفيذ مشاريع الإنشاءات بجودة عالية.</p>
+          <ul class="service-features">
+            <li>إنشاء مباني سكنية</li>
+            <li>إنشاء منشآت تجارية</li>
+            <li>تشييد مشاريع حكومية</li>
+            <li>إشراف على التنفيذ</li>
+          </ul>
+           <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- أعمال صيانة -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <h3>أعمال صيانة</h3>
+          <p>خدمات صيانة شاملة وسريعة.</p>
+          <ul class="service-features">
+            <li>صيانة كهربائية</li>
+            <li>صيانة سباكة</li>
+            <li>صيانة تكييف وتبريد</li>
+            <li>صيانة أجهزة منزلية</li>
+          </ul>
+           <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+
+        <!-- دهانات وتشطيبات -->
+        <div class="service-card">
+          <div class="service-icon">
+            <i class="fas fa-paint-roller"></i>
+          </div>
+          <h3>دهانات وتشطيبات</h3>
+          <p>أعمال تشطيبات وديكور بجودة عالية.</p>
+          <ul class="service-features">
+            <li>دهانات داخلية وخارجية</li>
+            <li>تشطيبات جبسية</li>
+            <li>أرضيات وسيراميك</li>
+            <li>ديكورات حديثة</li>
+          </ul>
+        <p style="height: 7px;"></p>
+<button class="btn btn-accent request-service-btn" onclick="window.location.href='services.html'">
+  اطلب هذه الخدمة
+</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- قسم إنجازاتنا -->
+  <section class="achievements-section" id="achievements">
+    <div class="achievements-container">
+      <div class="achievements-header" data-aos="fade-up">
+        <h2>إنجازاتنا</h2>
+        <p>نفخر بما حققناه من إنجازات على مر السنين</p>
+      </div>
+      
+      <div class="achievements-grid">
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="achievement-icon">
+            <i class="fas fa-building"></i>
+          </div>
+          <h3>مشاريع إنشائية</h3>
+          <p>إكمال أكثر من 50 مشروع إنشائي بكفاءة وجودة عالية.</p>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="achievement-icon">
+            <i class="fas fa-users"></i>
+          </div>
+          <h3>عملاء مخلصون</h3>
+          <p>اكتسبنا ثقة أكثر من 200 عميل في مختلف القطاعات.</p>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="achievement-icon">
+            <i class="fas fa-award"></i>
+          </div>
+          <h3>جوائز التميز</h3>
+          <p>حصولنا على عدة جوائز في مجال الجودة والتميز.</p>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="achievement-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <h3>نمو مستمر</h3>
+          <p>نمو مضطرد في حجم الأعمال والمشاريع المنفذة سنوياً.</p>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="500">
+          <div class="achievement-icon">
+            <i class="fas fa-handshake"></i>
+          </div>
+          <h3>شراكات استراتيجية</h3>
+          <p>إبرام شراكات مع كبرى الشركات المحلية والدولية.</p>
+        </div>
+        
+        <div class="achievement-card" data-aos="fade-up" data-aos-delay="600">
+          <div class="achievement-icon">
+            <i class="fas fa-medal"></i>
+          </div>
+          <h3>جودة معترف بها</h3>
+          <p>حصولنا على شهادات الجودة العالمية في مجال الإنشاءات.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- Clients Section -->
   <section class="clients-section" data-aos="fade-up">
     <div class="container">
-      <h2 class="section-title">شركاتنا</h2>
+      <h2 class="section-title">عملائنا</h2>
       <div class="clients-grid">
         <img src="assets/img/company1.PNG" alt="عميل 1" data-aos="zoom-in">
         <img src="assets/img/company2.PNG" alt="عميل 2" data-aos="zoom-in" data-aos-delay="100">
@@ -870,7 +1503,7 @@
           <ul>
             <li><a href="about.html">من نحن</a></li>
             <li><a href="services.html">الخدمات</a></li>
-            <li><a href="portfolio.html">شركاتنا</a></li>
+            <li><a href="company.html">شركاتنا</a></li>
             <li><a href="contact.html">تواصل معنا</a></li>
           </ul>
         </div>
@@ -902,6 +1535,11 @@
       </div>
     </div>
   </footer>
+  
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/966565678970?text=مرحباً، أريد الاستفسار عن خدماتكم" class="whatsapp-float" target="_blank" id="whatsappButton">
+    <i class="fab fa-whatsapp whatsapp-icon"></i>
+  </a>
      
   <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
@@ -976,6 +1614,41 @@
     
     // إضافة السنة الحالية للفوتر
     document.getElementById('year').textContent = new Date().getFullYear();
+    
+    // التحكم في ظهور وأخفاء أيقونة الواتساب
+    const whatsappButton = document.getElementById('whatsappButton');
+    
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 300) {
+        whatsappButton.classList.add('visible');
+      } else {
+        whatsappButton.classList.remove('visible');
+      }
+    });
+    
+    // الانتقال إلى قسم طلب الخدمة عند النقر على أزرار طلب الخدمة
+    const requestServiceButtons = document.querySelectorAll('.request-service-btn');
+    const serviceRequestForm = document.getElementById('serviceRequestForm');
+    const serviceTypeSelect = document.getElementById('serviceType');
+    
+    requestServiceButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const serviceType = this.getAttribute('data-service');
+        serviceTypeSelect.value = serviceType;
+        
+        // الانتقال إلى قسم طلب الخدمة
+        document.getElementById('requestService').scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+    
+    // معالجة إرسال نموذج طلب الخدمة
+    serviceRequestForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('شكراً لك! سنقوم بالتواصل معك قريباً لتأكيد طلبك.');
+      this.reset();
+    });
   </script>
 </body>
 </html>

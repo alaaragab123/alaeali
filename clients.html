@@ -49,6 +49,7 @@
       height: 80px; /* ارتفاع الـ Navbar */
       display: flex;
       align-items: center;
+      direction: ltr;
     }
     
     .site-header.scrolled {
@@ -103,7 +104,7 @@
     }
     
     .language-switcher i {
-      margin-left: 5px;
+      margin-right: 5px;
     }
     /* Full-width Navigation */
     .full-nav {
@@ -205,38 +206,54 @@
       background: none;
       border: none;
     }
-    
-    .menu-toggle span {
-      position: absolute;
-      width: 30px;
-      height: 3px;
-      background: var(--text-color);
-      border-radius: 3px;
-      transition: var(--transition);
-    }
-    
-    .menu-toggle span:nth-child(1) {
-      transform: translateY(-10px);
-    }
-    
-    .menu-toggle span:nth-child(3) {
-      transform: translateY(10px);
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
-      background: var(--accent-color);
-    }
-    
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
-      background: var(--accent-color);
-    }
-    
+     .menu-toggle {
+  position: relative;
+  width: 30px;
+  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
+  cursor: pointer;
+}
+
+   .menu-toggle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* أول خط */
+.menu-toggle span:nth-child(1) {
+  transform: translateY(0);
+}
+
+/* تاني خط */
+.menu-toggle span:nth-child(2) {
+  transform: translateY(8px);
+}
+
+/* تالت خط */
+.menu-toggle span:nth-child(3) {
+  transform: translateY(16px);
+}
+
+/* عند التفعيل */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--accent-color);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(8px) rotate(-45deg);
+  background: var(--accent-color);
+}
+
     /* Social Icons in Nav */
     .nav-social {
       position: absolute;
@@ -424,6 +441,22 @@
       padding: 20px 0;
       text-align: center;
     }
+           .full-nav {
+  max-height: 100vh;     /* القايمة تاخد أقصى ارتفاع للشاشة */
+  overflow-y: auto;      /* يضيف Scroll لو المحتوى أطول من الشاشة */
+}
+.full-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.full-nav::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.full-nav::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
     
     /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 768px) {
@@ -473,44 +506,43 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-           <img src="assets/img/Sep.png" alt="Logo" />
-          <span>GROUP AL'AEALI</span>
+ <!-- Header -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/Sep.png" alt="Logo" />
+        <span>GROUP AL'AEALI</span>
+      </a>
+      
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <!-- Menu Toggle Button -->
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a href="clients_en.html" class="language-switcher" style="font-size: 18px;">
+          <i class="fas fa-globe"></i> EN
         </a>
-        
-         <div style="display: flex; align-items: center; gap: 10px;">
- 
-
-  <!-- Menu Toggle Button -->
-  <button class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-   <a href="portfolio_en.html" class="language-switcher" style="font-size: 18px;">
-    <i class="fas fa-globe"></i> EN
-  </a>
-</div>
       </div>
     </div>
-    
-    <!-- Full-width Navigation -->
-    <nav class="full-nav" id="fullNav">
-      <ul class="nav-links">
-        <li><a href="index.html">الرئيسية</a></li>
-        <li><a href="about.html">من نحن</a></li>
-        <li><a href="services.html">الخدمات</a></li>
-        <li><a href="portfolio.html" class="active">شركاتنا</a></li>
-        <li><a href="contact.html">تواصل معنا</a></li>
-      </ul>
-      
-      
-    </nav>
-  </header>
+  </div>
+  
+  <!-- Full-width Navigation -->
+  <nav class="full-nav" id="fullNav">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="vision.html">رؤيتنا</a></li>
+      <li><a href="message.html">الرسالة</a></li>
+      <li><a href="board.html">مجلس الإدارة</a></li>
+      <li><a href="clients.html">عملاؤنا</a></li>
+      <li><a href="company.html">شركاتنا</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </nav>
+</header>
 
   <!-- Hero -->
   <section class="page-hero" data-aos="fade-up">
@@ -526,7 +558,7 @@
   <!-- Clients / Vision -->
   <section class="clients-section" data-aos="fade-up">
     <div class="container">
-      <h2>شركاتنا</h2>
+      <h2>عملائنا</h2>
       <p>نفخر بشراكتنا مع مجموعة متميزة من العملاء في مختلف القطاعات</p>
       
       <div class="clients-grid">
@@ -580,7 +612,7 @@
           <ul>
             <li><a href="about.html">من نحن</a></li>
             <li><a href="services.html">الخدمات</a></li>
-            <li><a href="portfolio.html">شركاتنا</a></li>
+            <li><a href="company.html">شركاتنا</a></li>
             <li><a href="contact.html">تواصل معنا</a></li>
           </ul>
         </div>

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,6 +14,7 @@
       --accent-color: #f8a31b;
       --light-color: #f5f5f5;
       --dark-color: #333;
+      --text-color: #fff;
       --transition: all 0.3s ease;
     }
     
@@ -60,6 +61,7 @@
       height: 80px; /* ارتفاع الـ Navbar */
       display: flex;
       align-items: center;
+      direction: ltr;
     }
     
     .site-header.scrolled {
@@ -91,7 +93,7 @@
     
     .logo img {
       height: 45px;
-      margin-right: 10px;
+      margin-left: 10px;
       transition: var(--transition);
     }
     
@@ -100,7 +102,7 @@
       font-size: 16px;
       color: #fff;
     }
-        .language-switcher {
+              .language-switcher {
       color: #fff;
       margin-left: 20px;
       text-decoration: none;
@@ -179,7 +181,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       width: 0;
       height: 3px;
       background: var(--accent-color);
@@ -192,7 +194,7 @@
     
     .nav-links a:hover {
       color: var(--accent-color);
-      transform: translateX(10px);
+      transform: translateX(-10px);
     }
     
     .nav-links a.active {
@@ -216,37 +218,54 @@
       background: none;
       border: none;
     }
-    
-    .menu-toggle span {
-      position: absolute;
-      width: 30px;
-      height: 3px;
-      background: #fff;
-      border-radius: 3px;
-      transition: var(--transition);
-    }
-    
-    .menu-toggle span:nth-child(1) {
-      transform: translateY(-10px);
-    }
-    
-    .menu-toggle span:nth-child(3) {
-      transform: translateY(10px);
-    }
-    
-    .menu-toggle.active span:nth-child(1) {
-      transform: translateY(0) rotate(45deg);
-      background: var(--accent-color);
-    }
-    
-    .menu-toggle.active span:nth-child(2) {
-      opacity: 0;
-    }
-    
-    .menu-toggle.active span:nth-child(3) {
-      transform: translateY(0) rotate(-45deg);
-      background: var(--accent-color);
-    }
+     .menu-toggle {
+  position: relative;
+  width: 30px;
+  height: 20px; /* المساحة اللي هتحتوي التلات خطوط */
+  cursor: pointer;
+}
+
+  .menu-toggle span {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background: var(--text-color);
+  border-radius: 3px;
+  transition: var(--transition);
+}
+
+/* أول خط */
+.menu-toggle span:nth-child(1) {
+  transform: translateY(0);
+}
+
+/* تاني خط */
+.menu-toggle span:nth-child(2) {
+  transform: translateY(8px);
+}
+
+/* تالت خط */
+.menu-toggle span:nth-child(3) {
+  transform: translateY(16px);
+}
+
+/* عند التفعيل */
+.menu-toggle.active span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+  background: var(--accent-color);
+}
+
+.menu-toggle.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+  transform: translateY(8px) rotate(-45deg);
+  background: var(--accent-color);
+}
+
     
     /* Social Icons in Nav */
     .nav-social {
@@ -285,7 +304,7 @@
     }
     
     .page-hero h1 {
-      font-size: 2rem;
+      font-size: 1.8rem;
       margin-bottom: 15px;
     }
     
@@ -321,8 +340,8 @@
       content: '';
       position: absolute;
       bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 50%;
+      transform: translateX(50%);
       width: 80px;
       height: 3px;
       background: var(--accent-color);
@@ -385,7 +404,7 @@
     }
     
     .service-features {
-      text-align: left;
+      text-align: right;
       margin-top: 20px;
     }
     
@@ -393,7 +412,7 @@
       padding: 8px 0;
       border-bottom: 1px solid #eee;
       position: relative;
-      padding-left: 25px;
+      padding-right: 25px;
     }
     
     .service-features li:before {
@@ -401,7 +420,7 @@
       color: var(--accent-color);
       font-weight: bold;
       position: absolute;
-      left: 0;
+      right: 0;
       font-size: 1.5rem;
     }
     
@@ -509,7 +528,94 @@
       color: var(--accent-color);
     }
     
+    /* Hero */
+    .page-hero {
+      background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    .page-hero h1 {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .page-hero p {
+      font-size: 16px;
+      opacity: 0.9;
+      max-width: 900px;
+      margin: 0 auto;
+      line-height: 2;
+    }
+
+    /* Companies Section */
+    .companies-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .companies-section h2 {
+      text-align: center;
+      color: #20445a;
+      font-size: 24px;
+      margin-bottom: 15px;
+    }
+
+    .companies-section p {
+      text-align: center;
+      color: #555;
+      max-width: 800px;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+    }
+
+    .companies-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+
+    .company-card {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+    }
+
+    .company-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+    }
+
+    .company-card img {
+      width: 60%;
+      margin-right: 20%;
+      height: 150px;
+      object-fit:fill;
+    }
+
+    .company-card .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .company-card h3 {
+      font-size: 20px;
+      margin-bottom: 10px;
+      color: #20445a;
+    }
+
+    .company-card p {
+      font-size: 14px;
+      color: #666;
+      line-height: 1.7;
+    }
+
     /* الفوتر */
+ /* الفوتر */
     .site-footer {
       background: var(--primary-color);
       color: #fff;
@@ -536,7 +642,7 @@
       content: '';
       position: absolute;
       bottom: 0;
-      left: 0;
+      right: 0;
       width: 50px;
       height: 2px;
       background: var(--accent-color);
@@ -593,7 +699,7 @@
     }
     
     .contact-info li i {
-      margin-right: 10px;
+      margin-left: 10px;
       color: var(--accent-color);
     }
     
@@ -602,6 +708,22 @@
       padding: 20px 0;
       text-align: center;
     }
+           .full-nav {
+  max-height: 100vh;     /* القايمة تاخد أقصى ارتفاع للشاشة */
+  overflow-y: auto;      /* يضيف Scroll لو المحتوى أطول من الشاشة */
+}
+.full-nav::-webkit-scrollbar {
+  width: 8px;
+}
+
+.full-nav::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.full-nav::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
     
     /* التكيف مع الشاشات الصغيرة */
     @media (max-width: 768px) {
@@ -626,7 +748,7 @@
       }
       
       .page-hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
       
       .page-hero p {
@@ -650,274 +772,99 @@
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="site-header">
-    <div class="header-container">
-      <div class="header-inner">
-        <a href="index.html" class="logo">
-           <img src="assets/img/Sep.png" alt="Logo" />
-          <span>GROUP AL'AEALI</span>
-        </a>
-        
-              
+<!-- Header -->
+<header class="site-header">
+  <div class="header-container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/img/Sep.png" alt="Logo" />
+        <span>GROUP AL'AEALI</span>
+      </a>
+      
       <div style="display: flex; align-items: center; gap: 10px;">
- 
-
-  <!-- Menu Toggle Button -->
-  <button class="menu-toggle" id="menuToggle">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
-   <a href="services.html" class="language-switcher" style="font-size: 18px;">
-    <i class="fas fa-globe"></i> AR
-  </a>
-</div>
+        <!-- Menu Toggle Button -->
+        <button class="menu-toggle" id="menuToggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <a href="company_en.html" class="language-switcher" style="font-size: 18px;">
+          <i class="fas fa-globe"></i> EN
+        </a>
       </div>
     </div>
-    
-    <!-- Full-width Navigation -->
-    <nav class="full-nav" id="fullNav">
-      <ul class="nav-links">
-        <li><a href="home_en.html">Home</a></li>
-        <li><a href="about_en.html">About Us</a></li>
-        <li><a href="service_en.html" class="active">Services</a></li>
-        <li><a href="portfolio_en.html">Our Companies</a></li>
-        <li><a href="contact_en.html">Contact Us</a></li>
-      </ul>
-      
-    
-    </nav>
-  </header>
+  </div>
+  
+  <!-- Full-width Navigation -->
+  <nav class="full-nav" id="fullNav">
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">الرئيسية</a></li>
+      <li><a href="about.html">من نحن</a></li>
+      <li><a href="vision.html">رؤيتنا</a></li>
+      <li><a href="message.html">الرسالة</a></li>
+      <li><a href="board.html">مجلس الإدارة</a></li>
+      <li><a href="clients.html">عملاؤنا</a></li>
+      <li><a href="company.html">شركاتنا</a></li>
+      <li><a href="contact.html">تواصل معنا</a></li>
+    </ul>
+  </nav>
+</header>
 
+
+
+<!-- Hero -->
   <section class="page-hero">
     <div class="container">
-      <h1>Our Services</h1>
-      <p>We are a company specialized in maintenance and operation works, providing comprehensive solutions to ensure the efficiency and continuity of facilities. We are committed to providing our services with the highest standards of quality and safety through a qualified technical team and long experience in this field.</p>
+      <h1>شركاتنا</h1>
+      <p>
+        نفتخر بإدارة وتشغيل مجموعة من الشركات التي تقدم حلولًا متنوعة في مجالات متعددة،
+        ونسعى دائمًا للتميز والابتكار لتلبية تطلعات عملائنا.
+      </p>
     </div>
   </section>
 
-  <section class="services-section">
-    <div class="container">
-      <div class="services-header">
-        <h2>Our Services</h2>
-        <p>We provide a comprehensive range of services to meet all your needs</p>
+  <!-- Companies Section -->
+  <section class="companies-section">
+    <h2>مجموعة شركاتنا</h2>
+    <p>
+      تعرف على الشركات التابعة لـ <strong>GROUP AL'AEALI</strong> والتي تغطي قطاعات مختلفة من الخدمات والاستشارات والمشاريع.
+    </p>
+    
+    <div class="companies-grid">
+      <div class="company-card">
+        <img src="assets/img/company1.PNG" alt="شركة 1">
+        <div class="content">
+          <h3>شركة الأعالي للاستشارات</h3>
+          <p>تقديم خدمات استشارية متكاملة للمؤسسات والأفراد بأعلى المعايير العالمية.</p>
+        </div>
       </div>
-      
-      <div class="services-grid">
-        <!-- Restaurant -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-utensils"></i>
-          </div>
-          <h3>Restaurant</h3>
-          <div class="service-price">Prices starting from 500 SAR</div>
-          <p>Serving diverse meals with high quality.</p>
-          <ul class="service-features">
-            <li>Full table service</li>
-            <li>Private party preparation</li>
-            <li>Home delivery</li>
-            <li>Varied foods on request</li>
-          </ul>
-          <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Restaurant">Request this service</button>
-        </div>
 
-        <!-- Nurses -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-user-nurse"></i>
-          </div>
-          <h3>Nurses</h3>
-          <div class="service-price">Prices starting from 300 SAR</div>
-          <p>Nursing and home healthcare services.</p>
-          <ul class="service-features">
-            <li>Elderly care</li>
-            <li>Chronic patient care</li>
-            <li>Home nursing services</li>
-            <li>Post-operative care</li>
-          </ul>
-         <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Nurses">Request this service</button>
+      <div class="company-card">
+        <img src="assets/img/company2.PNG" alt="شركة 2">
+        <div class="content">
+          <h3>شركة الأعالي للمقاولات</h3>
+          <p>تنفيذ مشاريع البنية التحتية، الترميم والصيانة، بأعلى جودة وكفاءة.</p>
         </div>
+      </div>
 
-        <!-- Domestic workers -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-home"></i>
-          </div>
-          <h3>Domestic Workers</h3>
-          <div class="service-price">Prices starting from 200 SAR</div>
-          <p>Providing qualified personnel for household work.</p>
-          <ul class="service-features">
-            <li>Cleaning services</li>
-            <li>Cooking and meal preparation</li>
-            <li>Child care</li>
-            <li>Laundry and ironing</li>
-          </ul>
-                   <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Domestic Workers">Request this service</button>
+      <div class="company-card">
+        <img src="assets/img/company3.PNG" alt="شركة 3">
+        <div class="content">
+          <h3>شركة الأعالي للعمالة</h3>
+          <p>توفير عمالة منزلية ومهنية مدربة تلبي احتياجات العملاء بكل احترافية.</p>
         </div>
+      </div>
 
-        <!-- Laboratory operation -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-flask"></i>
-          </div>
-          <h3>Laboratory Operation</h3>
-          <div class="service-price">Prices starting from 1000 SAR</div>
-          <p>Operation and maintenance of laboratories with the latest technologies.</p>
-          <ul class="service-features">
-            <li>Medical laboratory operation</li>
-            <li>Scientific research laboratories</li>
-            <li>Periodic equipment maintenance</li>
-            <li>Personnel training</li>
-          </ul>
-          <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Laboratory Operation">Request this service</button>
-        </div>
-
-        <!-- Restoration projects -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-university"></i>
-          </div>
-          <h3>Restoration Projects</h3>
-          <div class="service-price">Prices starting from 2000 SAR</div>
-          <p>Professional restoration of private and government buildings.</p>
-          <ul class="service-features">
-            <li>Building facade restoration</li>
-            <li>Comprehensive internal restoration</li>
-            <li>Heritage and archaeological restoration</li>
-            <li>Government facilities restoration</li>
-          </ul>
-           <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Restoration Projects">Request this service</button>
-        </div>
-
-        <!-- Construction contracts -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-file-contract"></i>
-          </div>
-          <h3>Construction Contracts</h3>
-          <div class="service-price">Prices starting from 5000 SAR</div>
-          <p>Implementation of construction projects with high quality.</p>
-          <ul class="service-features">
-            <li>Residential building construction</li>
-            <li>Commercial facilities construction</li>
-            <li>Government projects construction</li>
-            <li>Execution supervision</li>
-          </ul>
-           <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Construction Contracts">Request this service</button>
-        </div>
-
-        <!-- Maintenance works -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-tools"></i>
-          </div>
-          <h3>Maintenance Works</h3>
-          <div class="service-price">Prices starting from 150 SAR</div>
-          <p>Comprehensive and fast maintenance services.</p>
-          <ul class="service-features">
-            <li>Electrical maintenance</li>
-            <li>Plumbing maintenance</li>
-            <li>AC and refrigeration maintenance</li>
-            <li>Home appliance maintenance</li>
-          </ul>
-           <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Maintenance Works">Request this service</button>
-        </div>
-
-        <!-- Painting and finishing -->
-        <div class="service-card">
-          <div class="service-icon">
-            <i class="fas fa-paint-roller"></i>
-          </div>
-          <h3>Painting and Finishing</h3>
-          <div class="service-price">Prices starting from 800 SAR</div>
-          <p>Finishing and decoration works with high quality.</p>
-          <ul class="service-features">
-            <li>Interior and exterior painting</li>
-            <li>Gypsum finishing</li>
-            <li>Flooring and ceramics</li>
-            <li>Modern decorations</li>
-          </ul>
-        <p style="height: 7px;"></p>
-          <button class="btn btn-accent request-service-btn" data-service="Painting and Finishing">Request this service</button>
+      <div class="company-card">
+        <img src="assets/img/company4.PNG" alt="شركة 4">
+        <div class="content">
+          <h3>شركة الأعالي للخدمات اللوجستية</h3>
+          <p>حلول لوجستية مبتكرة لدعم حركة التجارة وتطوير سلاسل الإمداد.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Service request section -->
-  <section class="service-request" id="requestService">
-    <div class="container">
-      <div class="request-container">
-        <div class="request-header">
-          <h2>Request Service</h2>
-          <p>Fill out the form below to request the service and we will contact you to confirm details and price</p>
-        </div>
-        
-        <form class="request-form" id="serviceRequestForm">
-          <div class="form-group">
-            <label for="serviceType">Service Type</label>
-            <select id="serviceType" name="serviceType" required>
-              <option value="">Select the required service</option>
-              <option value="Restaurant">Restaurant</option>
-              <option value="Nurses">Nurses</option>
-              <option value="Domestic Workers">Domestic Workers</option>
-              <option value="Laboratory Operation">Laboratory Operation</option>
-              <option value="Restoration Projects">Restoration Projects</option>
-              <option value="Construction Contracts">Construction Contracts</option>
-              <option value="Maintenance Works">Maintenance Works</option>
-              <option value="Painting and Finishing">Painting and Finishing</option>
-            </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="name">Full Name</label>
-            <input type="text" id="name" name="name" required placeholder="Enter your full name">
-          </div>
-          
-          <div class="form-group">
-            <label for="phone">Phone Number</label>
-            <input type="tel" id="phone" name="phone" required placeholder="Enter your phone number">
-          </div>
-          
-          <div class="form-group">
-            <label for="email">Email (Optional)</label>
-            <input type="email" id="email" name="email" placeholder="Enter your email">
-          </div>
-          
-          <div class="form-group">
-            <label for="details">Request Details</label>
-            <textarea id="details" name="details" required placeholder="Write the details of the required service here..."></textarea>
-          </div>
-          
-          <div class="form-group">
-            <label for="budget">Expected Budget (Optional)</label>
-            <input type="number" id="budget" name="budget" placeholder="Amount in Saudi Riyal">
-          </div>
-          
-          <div class="form-group">
-            <label for="date">Required Service Date (Optional)</label>
-            <input type="date" id="date" name="date">
-          </div>
-          
-          <button type="submit" class="btn btn-accent">Submit Request</button>
-        </form>
-        
-        <div class="price-estimate" id="priceEstimate">
-          <h4>Initial Price Estimate</h4>
-          <div class="estimated-price" id="estimatedPrice">0 SAR</div>
-          <p>This price is an estimate and may vary according to the details of the required service</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
    <!-- Footer -->
   <footer class="site-footer">
@@ -926,12 +873,12 @@
         
         <div class="footer-col about">
           <a href="index.html" class="footer-logo">
-              <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
+               <img src="assets/img/Sep.png" alt="Logo" width="50px" height="50" />
           <span style="color: #fff;">GROUP AL'AEALI</span>
           </a>
             <p style="height: 5px;"></p>
           <p>
-            We provide you with our best services with the highest standards of quality and excellence in various fields.
+            نقدم لكم أفضل خدماتنا بأعلى معايير الجودة والتميز في مختلف المجالات.
           </p>
           <div class="social-links">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -942,29 +889,29 @@
         </div>
 
         <div class="footer-col">
-          <h4>Quick Links</h4>
+          <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="about_en.html">About Us</a></li>
-            <li><a href="service_en.html">Services</a></li>
-            <li><a href="portfolio_en.html">Our Companies</a></li>
-            <li><a href="contact_en.html">Contact Us</a></li>
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="company.html">شركاتنا</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Our Services</h4>
+          <h4>خدماتنا</h4>
           <ul>
-            <li><a href="#">Domestic Workers</a></li>
-            <li><a href="#">Laboratory and Project Operation</a></li>
-            <li><a href="#">Private and Government Building Restoration</a></li>
-            <li><a href="#">Building Maintenance Works</a></li>
+            <li><a href="#">عمالة منزلية</a></li>
+            <li><a href="#">تشغيل معامل ومشاريع</a></li>
+            <li><a href="#">ترميم أبنية خاصة وحكومية</a></li>
+            <li><a href="#">أعمال صيانة المباني</a></li>
           </ul>
         </div>
 
         <div class="footer-col">
-          <h4>Contact Us</h4>
+          <h4>تواصل معنا</h4>
           <ul class="contact-info">
-            <li><i class="fas fa-map-marker-alt"></i> Riyadh, Saudi Arabia</li>
+            <li><i class="fas fa-map-marker-alt"></i> الرياض، السعودية</li>
             <li><i class="fas fa-phone-alt"></i>  (+966)-0565678970</li>
             <li><i class="fas fa-envelope"></i> info@alaeali.com</li>
           </ul>
@@ -974,14 +921,14 @@
 
     <div class="footer-bottom">
       <div class="container">
-        <p>© <span id="year">2023</span> Al'Aeali Company. All rights reserved.</p>
+        <p>© <span id="year">2023</span> شركة الأعالي. جميع الحقوق محفوظة.</p>
       </div>
     </div>
   </footer>
      
 
   <script>
-    // Footer year
+    // سنة الفوتر
     document.getElementById('year').textContent = new Date().getFullYear();
     
     // Full-width Navigation
@@ -995,7 +942,7 @@
       body.classList.toggle('no-scroll');
     });
     
-    // Close menu when clicking on a link
+    // إغلاق القائمة عند النقر على رابط
     const navLinks = document.querySelectorAll('.nav-links a');
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
@@ -1005,7 +952,7 @@
       });
     });
     
-    // Scroll effect on Header
+    // تأثير التمرير على الـ Header
     window.addEventListener('scroll', function() {
       const header = document.querySelector('.site-header');
       if (window.scrollY > 50) {
@@ -1015,7 +962,7 @@
       }
     });
     
-    // Service request buttons
+    // أزرار طلب الخدمة
     const requestButtons = document.querySelectorAll('.request-service-btn');
     const serviceTypeSelect = document.getElementById('serviceType');
     const requestSection = document.getElementById('requestService');
@@ -1027,46 +974,46 @@
         const service = button.getAttribute('data-service');
         serviceTypeSelect.value = service;
         
-        // Scroll to service request section
+        // التمرير إلى قسم طلب الخدمة
         requestSection.scrollIntoView({ behavior: 'smooth' });
         
-        // Calculate estimated price
+        // حساب سعر تقديري
         calculateEstimatedPrice(service);
       });
     });
     
-    // Change price when service type changes
+    // تغيير السعر عند تغيير نوع الخدمة
     serviceTypeSelect.addEventListener('change', function() {
       calculateEstimatedPrice(this.value);
     });
     
-    // Function to calculate estimated price
+    // دالة لحساب السعر التقديري
     function calculateEstimatedPrice(service) {
       let price = 0;
       
       switch(service) {
-        case 'Restaurant':
+        case 'مطعم':
           price = 500;
           break;
-        case 'Nurses':
+        case 'ممرضات':
           price = 300;
           break;
-        case 'Domestic Workers':
+        case 'عمالة منزلية':
           price = 200;
           break;
-        case 'Laboratory Operation':
+        case 'تشغيل معامل':
           price = 1000;
           break;
-        case 'Restoration Projects':
+        case 'مشاريع ترميم':
           price = 2000;
           break;
-        case 'Construction Contracts':
+        case 'عقود إنشاءات':
           price = 5000;
           break;
-        case 'Maintenance Works':
+        case 'أعمال صيانة':
           price = 150;
           break;
-        case 'Painting and Finishing':
+        case 'دهانات وتشطيبات':
           price = 800;
           break;
         default:
@@ -1074,17 +1021,17 @@
       }
       
       if (price > 0) {
-        estimatedPrice.textContent = price + ' SAR';
+        estimatedPrice.textContent = price + ' ريال';
         priceEstimate.style.display = 'block';
       } else {
         priceEstimate.style.display = 'none';
       }
     }
     
-    // Form submission
+    // إرسال النموذج
     document.getElementById('serviceRequestForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Thank you! Your request has been received and we will contact you within 24 hours to confirm details and final price.');
+      alert('شكراً لك! تم استلام طلبك وسنتواصل معك خلال 24 ساعة لتأكيد التفاصيل والسعر النهائي.');
       this.reset();
       priceEstimate.style.display = 'none';
     });
